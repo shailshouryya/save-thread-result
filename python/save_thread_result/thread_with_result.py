@@ -44,9 +44,6 @@ class ThreadWithResult(threading.Thread):
     inside the closure function.
     '''
     def __init__(self, group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None):
-        self.function_to_thread = target
-        self.function_arguments = args
-        self.function_kwarguments = kwargs
         def function():
-            self.result = self.function_to_thread(*self.function_arguments, **self.function_kwarguments)
+            self.result = target(*args, **kwargs)
         super().__init__(group=group, target=function, name=name, daemon=daemon)
