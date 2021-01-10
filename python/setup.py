@@ -31,7 +31,7 @@ setup(
     # 3. MAINTENANCE version when they make backwards-compatible bug fixes.
     # Adopting this approach as a project author allows users to make use of “compatible release” specifiers, where name ~= X.Y requires at least release X.Y, but also allows any later release with a matching MAJOR version.
     # Python projects adopting semantic versioning should abide by clauses 1-8 of the Semantic Versioning 2.0.0 specification: https://semver.org/.
-    version                       = '0.0.1',
+    version                       = '0.0.2',
     name                          = 'save-thread-result',
     description                   = 'Simple subclass wrapper around `threading.Thread` to get the return value from a thread in python (from `threading` built-in package in Python Standard library). Exact same interface for creating an instance of this threading sublcass as `threading.Thread`!',
     long_description              = long_description,
