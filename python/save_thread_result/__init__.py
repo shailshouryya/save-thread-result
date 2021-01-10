@@ -1,7 +1,7 @@
 from .thread_with_result import ThreadWithResult
 
 '''
-version:              0.0.3
+version:              0.0.4
 author:               Shail-Shouryya
 email:                shailshouryya@gmail.com
 development_status:   4 - Beta
@@ -12,7 +12,7 @@ source:               https://github.com/Shail-Shouryya/save-thread-result
 '''
 
 
-__version__              = '0.0.3'
+__version__              = '0.0.4'
 __author__               = 'Shail-Shouryya'
 __email__                = 'shailshouryya@gmail.com'
 __development_status__   = '4 - Beta'
