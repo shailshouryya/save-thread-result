@@ -45,7 +45,11 @@ python      # Windows
 ```python
 from save_thread_result import ThreadWithResult
 
-thread = ThreadWithResult(target=my_function, args=(my_function_arg1, my_function_arg2, ...) kwargs=(my_function_kwarg1=kwarg1_value, my_function_kwarg2=kwarg2_value, ...))
+thread = ThreadWithResult(
+    target = my_function,
+    args   = (my_function_arg1, my_function_arg2, ...)
+    kwargs = (my_function_kwarg1=kwarg1_value, my_function_kwarg2=kwarg2_value, ...)
+)
 
 thread.start()
 thread.join()
