@@ -20,6 +20,20 @@
 </p>
 
 <details>
+  <summary><b>Installing the package</b></summary>
+
+Enter the following in your command line:
+
+```python
+# if something isn't working properly, try rerunning this
+# the problem may have been fixed with a newer version
+
+pip3 install -U save-thread-result     # MacOS/Linux
+pip  install -U save-thread-result     # Windows
+```
+</details>
+
+<details>
   <summary><b>Usage Statistics</b></summary>
 
 - [PePy](https://pepy.tech/project/save-thread-result)
