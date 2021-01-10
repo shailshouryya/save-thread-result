@@ -55,6 +55,21 @@ print(thread.result)
 </details>
 
 <details>
+  <summary><b>Seeing <b>all</b> available methods and attributes for `ThreadWithResult` class</b></summary>
+
+```
+python3     # MacOS/Linux
+python      # Windows
+```
+```python
+from save_thread_result import ThreadWithResult
+
+help(ThreadWithResult)
+```
+
+</details>
+
+<details>
   <summary><b>Usage Statistics</b></summary>
 
 - [PePy](https://pepy.tech/project/save-thread-result)
