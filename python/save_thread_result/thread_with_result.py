@@ -8,6 +8,13 @@ import threading
 
 class ThreadWithResult(threading.Thread):
     '''
+    `thread = ThreadWithResult(target=my_function, args=(my_function_arg1, my_function_arg2, ...))`
+
+    Simple subclass wrapper around `threading.Thread` to get the return value
+    from a thread in python (from `threading` built-in package in
+    Python Standard library). Exact same interface for creating an instance
+    of this threading sublcass as `threading.Thread`!
+
     Helper class used solely for saving the result of a function called
     through the threading interface, since `some_thread_object.start()`
     executes and returns immediately, without waiting for the thread
