@@ -43,7 +43,7 @@ class ThreadWithResult(threading.Thread):
     for `args` since we pass the arguments to our actual function
     inside the closure function.
     '''
-    def __init__(self, target, args):
+    def __init__(self, group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None):
         self.function_to_thread = target
         self.function_arguments = args
         def function():
