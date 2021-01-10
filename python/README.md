@@ -49,7 +49,10 @@ thread = ThreadWithResult(target=my_function, args=(my_function_arg1, my_functio
 
 thread.start()
 thread.join()
-print(thread.result)
+if getattr(test_case_thread_1, 'result', None):
+    print(thread.result)
+else:
+    print('ERROR! Something went wrong while executing this thread, and the function you passed in did NOT complete!!')
 ```
 
 </details>
