@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Shail-Shouryya/save-thread-result/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/Shail-Shouryya/save-thread-result?color=brightgreen&labelColor=black"></a>
+  <a href="https://github.com/Shail-Shouryya/save-thread-result/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/Shail-Shouryya/save-thread-result?color=brightgreen&labelColor=black"></a>
   <a href="https://pypi.org/project/save-thread-result/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/save-thread-result?&labelColor=black&label=PyPI"></a>
   <br>
   <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Shail-Shouryya/save-thread-result?color=purple&labelColor=black">
@@ -32,8 +32,8 @@
   </a>
   <br>
   <a href="https://github.com/Shail-Shouryya/save-thread-result/branches"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Shail-Shouryya/save-thread-result?color=pink&labelColor=black"></a>
-  <a href="https://github.com/Shail-Shouryya/save-thread-result/commits/master"><img alt="GitHub last commit to master (branch)" src="https://img.shields.io/github/last-commit/Shail-Shouryya/save-thread-result/master?color=pink&labelColor=black&label=last%20commit%20to%20master"></a>
-  <img alt="GitHub commits since latest release (by SemVer including pre-releases)" src="https://img.shields.io/github/commits-since/Shail-Shouryya/save-thread-result/latest/master?color=pink&labelColor=black&include_prereleases">
+  <a href="https://github.com/Shail-Shouryya/save-thread-result/commits/main"><img alt="GitHub last commit to main (branch)" src="https://img.shields.io/github/last-commit/Shail-Shouryya/save-thread-result/main?color=pink&labelColor=black&label=last%20commit%20to%20main"></a>
+  <img alt="GitHub commits since latest release (by SemVer including pre-releases)" src="https://img.shields.io/github/commits-since/Shail-Shouryya/save-thread-result/latest/main?color=pink&labelColor=black&include_prereleases">
 </p>
 
 <details>
