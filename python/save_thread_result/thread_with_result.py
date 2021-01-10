@@ -47,6 +47,9 @@ class ThreadWithResult(threading.Thread):
         self.function_to_thread = target
         self.function_arguments = args
         self.function_kwarguments = kwargs
+        self.group                = group
+        self.name                 = name
+        self.daemon               = daemon
         def function():
             self.result = self.function_to_thread(*self.function_arguments, **self.function_kwarguments)
         super().__init__(target=function, args=())
