@@ -35,7 +35,7 @@ class ThreadWithResult(threading.Thread):
     Since the function we want to run on a separate thread is no longer
     the function passed directly to `threading.Thread` (remember
     we pass the closure function instead!), we save the result of
-    the enclosed function as the `self.failed` attribute for the
+    the enclosed function as the `self.result` attribute for the
     actual instance of this class.
 
     We use inheritance to initialize this instance with the
