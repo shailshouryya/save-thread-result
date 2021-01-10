@@ -49,4 +49,4 @@ class ThreadWithResult(threading.Thread):
         self.function_kwarguments = kwargs
         def function():
             self.result = self.function_to_thread(*self.function_arguments, **self.function_kwarguments)
-        super().__init__(target=function)
+        super().__init__(group=group, target=function, name=name, daemon=daemon)
