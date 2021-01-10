@@ -18,3 +18,21 @@
   <br>
   <a href="https://codebeat.co/projects/github-com-shail-shouryya-save-thread-result-master"><img src="https://codebeat.co/badges/46b103ed-da79-4893-96af-ce95c9149532" alt="codebeat badge"/></a>
 </p>
+
+<details>
+  <summary><b>Usage Statistics</b></summary>
+
+- [PePy](https://pepy.tech/project/save-thread-result)
+- [PyPi Stats](https://pypistats.org/packages/save-thread-result)
+</details>
+<p>
+  <a href="https://pypistats.org/packages/save-thread-result"><img alt="PyPI - Daily Downloads" src="https://img.shields.io/pypi/dd/save-thread-result?labelColor=black&color=blue&label=PyPI%20downloads"></a>
+  <br>
+  <a href="https://pypistats.org/packages/save-thread-result"><img alt="PyPI - Weekly Downloads" src="https://img.shields.io/pypi/dw/save-thread-result?labelColor=black&color=yellow&label=PyPI%20downloads"></a>
+  <a href="https://pepy.tech/project/save-thread-result"><img alt="PePY Weekly Downloads" src="https://static.pepy.tech/personalized-badge/save-thread-result?period=week&units=international_system&left_color=black&right_color=blue&left_text=PePY%20Downloads/week"></a>
+  <br>
+  <a href="https://pypistats.org/packages/save-thread-result"><img alt="PyPI - Monthly Downloads" src="https://img.shields.io/pypi/dm/save-thread-result?labelColor=black&color=blue&label=PyPI%20downloads"></a>
+  <a href="https://pepy.tech/project/save-thread-result"><img alt="PePY Monthly Downloads" src="https://static.pepy.tech/personalized-badge/save-thread-result?period=month&units=international_system&left_color=black&right_color=yellow&left_text=PePY%20Downloads/month"></a>
+  <br>
+  <a href="https://pepy.tech/project/save-thread-result"><img alt="PePY Total Downloads" src="https://static.pepy.tech/personalized-badge/save-thread-result?period=total&units=international_system&left_color=black&right_color=yellow&left_text=PePY%20Downloads%20Total"></a>
+</p>
