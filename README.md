@@ -35,3 +35,23 @@
   <a href="https://github.com/Shail-Shouryya/save-thread-result/commits/master"><img alt="GitHub last commit to master (branch)" src="https://img.shields.io/github/last-commit/Shail-Shouryya/save-thread-result/master?color=pink&labelColor=black&label=last%20commit%20to%20master"></a>
   <img alt="GitHub commits since latest release (by SemVer including pre-releases)" src="https://img.shields.io/github/commits-since/Shail-Shouryya/save-thread-result/latest/master?color=pink&labelColor=black&include_prereleases">
 </p>
+
+<details>
+  <summary><b>Usage Statistics</b></summary>
+
+- [PePy](https://pepy.tech/project/save-thread-result)
+- [PyPi Stats](https://pypistats.org/packages/save-thread-result)
+<p>
+  <a href="https://pypistats.org/packages/save-thread-result"><img alt="PyPI - Daily Downloads" src="https://img.shields.io/pypi/dd/save-thread-result?labelColor=black&color=blue&label=PyPI%20downloads"></a>
+  <br>
+  <a href="https://pypistats.org/packages/save-thread-result"><img alt="PyPI - Weekly Downloads" src="https://img.shields.io/pypi/dw/save-thread-result?labelColor=black&color=yellow&label=PyPI%20downloads"></a>
+  <a href="https://pepy.tech/project/save-thread-result"><img alt="PePY Weekly Downloads" src="https://static.pepy.tech/personalized-badge/save-thread-result?period=week&units=international_system&left_color=black&right_color=blue&left_text=PePY%20Downloads/week"></a>
+  <br>
+  <a href="https://pypistats.org/packages/save-thread-result"><img alt="PyPI - Monthly Downloads" src="https://img.shields.io/pypi/dm/save-thread-result?labelColor=black&color=blue&label=PyPI%20downloads"></a>
+  <a href="https://pepy.tech/project/save-thread-result"><img alt="PePY Monthly Downloads" src="https://static.pepy.tech/personalized-badge/save-thread-result?period=month&units=international_system&left_color=black&right_color=yellow&left_text=PePY%20Downloads/month"></a>
+  <br>
+  <a href="https://pepy.tech/project/save-thread-result"><img alt="PePY Total Downloads" src="https://static.pepy.tech/personalized-badge/save-thread-result?period=total&units=international_system&left_color=black&right_color=yellow&left_text=PePY%20Downloads%20Total"></a>
+  <br>
+  <img alt="GitHub release (latest by SemVer including pre-releases) downloads" src="https://img.shields.io/github/downloads-pre/Shail-Shouryya/save-thread-result/latest/total?labelColor=black&label=GitHub%20release%20%28latest%20by%20SemVer%20including%20pre-releases%29%20downloads%40latest">
+</p>
+</details>
