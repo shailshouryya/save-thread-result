@@ -1,3 +1,9 @@
+'''
+Contains `threading.Thread` subclass that saves the result of a thread
+as its `result` attribute - i.e. call `thread_with_result_instance_1.result`
+after `thread_with_result_instance_1` finishes running to get the return
+value from the function that ran on that thread.
+'''
 import threading
 
 class ThreadWithResult(threading.Thread):
