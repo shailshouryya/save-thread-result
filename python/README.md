@@ -34,6 +34,27 @@ pip  install -U save-thread-result     # Windows
 </details>
 
 <details>
+  <summary><b>Initializing the <code>ThreadWithResult</code> class</b></summary>
+
+This package uses a `threading.Thread` subclass `ThreadWithResult` that saves the result of a thread (from `threading` built-in package in Python Standard library) as its `result` attribute - i.e. after the thread finishes running, call `thread.result` to get the return value from the function that ran on that thread.
+
+```
+python3     # MacOS/Linux
+python      # Windows
+```
+```python
+from save_thread_result import ThreadWithResult
+
+thread = ThreadWithResult(target=my_function, args=(my_function_arg1, my_function_arg2, ...))
+
+thread.start()
+thread.join()
+print(thread.result)
+```
+
+</details>
+
+<details>
   <summary><b>Usage Statistics</b></summary>
 
 - [PePy](https://pepy.tech/project/save-thread-result)
