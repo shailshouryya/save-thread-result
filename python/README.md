@@ -28,7 +28,7 @@ I created this package because I needed to [store the result](https://github.com
 
 - [Return value from thread](https://stackoverflow.com/questions/1886090/return-value-from-thread)
 - [Threading in python: retrieve return value when using target= [duplicate]](https://stackoverflow.com/questions/2577233/threading-in-python-retrieve-return-value-when-using-target)
-- [How to get the return value from a thread in python?](https://stackoverflow.com/questions/6893968/how-to-get-the-return-value-from-a-thread-in-python_
+- [How to get the return value from a thread in python?](https://stackoverflow.com/questions/6893968/how-to-get-the-return-value-from-a-thread-in-python)
 - [Using Python Threading and Returning Multiple Results (Tutorial)](https://www.shanelynn.ie/using-python-threading-for-multiple-results-queue/)
 - [How to get the return value from a thread using python](https://www.edureka.co/community/31966/how-to-get-the-return-value-from-a-thread-using-python)
 - [How to manage python threads results?](https://stackoverflow.com/questions/3239617/how-to-manage-python-threads-results#3239815)
