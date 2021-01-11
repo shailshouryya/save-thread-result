@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/Shail-Shouryya/save-thread-result/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/Shail-Shouryya/save-thread-result?color=yellow&labelColor=black"></a>
-  <a href="https://docs.python.org/3/index.html">    <img src="https://img.shields.io/badge/python-3-blue?labelColor=black"/></a>
+  <a href="https://docs.python.org/3/index.html">    <img src="https://img.shields.io/badge/python-3.0%2B-blue?labelColor=black"/></a>
   <a href="https://www.python.org/dev/peps/pep-0008"><img src="https://img.shields.io/badge/code%20style-PEP8-yellow.svg?labelColor=black"/></a>
   <a href="https://github.com/Shail-Shouryya/save-thread-result/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Shail-Shouryya/save-thread-result?color=blue&labelColor=black"></a>
   <a href="https://github.com/Shail-Shouryya/save-thread-result/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/Shail-Shouryya/save-thread-result?color=yellow&labelColor=black"></a>
