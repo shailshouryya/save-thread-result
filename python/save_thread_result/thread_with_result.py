@@ -19,6 +19,10 @@ class ThreadWithResult(threading.Thread):
         kwargs = (my_function_kwarg1=kwarg1_value, my_function_kwarg2=kwarg2_value, ...)
     )
 
+    NOTE: As of Release 0.0.3, you can also specify values for
+    `group`, `name`, and `daemon` if you want to set those
+    values manually.
+
     For details about the interface features available from `threading.Thread`,
     see documentation under "Method resolution order" - accessible
     from python interpreter with:

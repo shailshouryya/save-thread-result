@@ -94,6 +94,9 @@ python      # Windows
 ```python
 from save_thread_result import ThreadWithResult
 
+# As of Release 0.0.3, you can also specify values for
+#`group`, `name`, and `daemon` if you want to set those
+# values manually.
 thread = ThreadWithResult(
     target = my_function,
     args   = (my_function_arg1, my_function_arg2, ...)
