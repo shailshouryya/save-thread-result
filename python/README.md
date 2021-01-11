@@ -1,4 +1,4 @@
-# save-thread-result Python API
+# Python API
 
 <p align="center">
   <a href="https://github.com/Shail-Shouryya/save-thread-result/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/Shail-Shouryya/save-thread-result?color=yellow&labelColor=black"></a>

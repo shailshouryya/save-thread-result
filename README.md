@@ -1,5 +1,4 @@
-# `save-thread-result` Overview
-
+# Overview
 
 <p align="center">
   <a href="https://github.com/Shail-Shouryya/save-thread-result/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Shail-Shouryya/save-thread-result?color=yellow&labelColor=black&style=social&logo=github"></a>
