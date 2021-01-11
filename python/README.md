@@ -81,7 +81,7 @@ pip  install -U save-thread-result     # Windows
 </details>
 
 <details>
-  <summary><b>Initializing the <code>ThreadWithResult</code> class</b></summary>
+  <summary><b>Initializing and using the <code>ThreadWithResult</code> class</b></summary>
 
 This package uses a `threading.Thread` subclass `ThreadWithResult` that saves the result of a thread (from `threading` built-in package in Python Standard library) as its `result` attribute - i.e. after the thread finishes running, call `thread.result` to get the return value from the function that ran on that thread.
 
