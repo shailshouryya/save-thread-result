@@ -139,7 +139,7 @@ help(ThreadWithResult)
   <summary><b>Usage Statistics</b></summary>
 
 - [PePy](https://pepy.tech/project/save-thread-result)
-- [PyPi Stats](https://pypistats.org/packages/save-thread-result)
+- [PyPI Stats](https://pypistats.org/packages/save-thread-result)
 </details>
 <p>
   <a href="https://pypistats.org/packages/save-thread-result"><img alt="PyPI - Daily Downloads" src="https://img.shields.io/pypi/dd/save-thread-result?labelColor=black&color=blue&label=PyPI%20downloads%20%28excludes%20mirrors%29" width="275"></a>
