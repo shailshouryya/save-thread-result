@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/Shail-Shouryya/save-thread-result/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/Shail-Shouryya/save-thread-result?color=yellow&labelColor=black"></a>
-  <a href="https://docs.python.org/3/index.html">    <img src="https://img.shields.io/badge/python-3.6%2B-blue?labelColor=black"/></a>
+  <a href="https://docs.python.org/3/index.html">    <img src="https://img.shields.io/badge/python-3-blue?labelColor=black"/></a>
   <a href="https://www.python.org/dev/peps/pep-0008"><img src="https://img.shields.io/badge/code%20style-PEP8-yellow.svg?labelColor=black"/></a>
   <a href="https://github.com/Shail-Shouryya/save-thread-result/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Shail-Shouryya/save-thread-result?color=blue&labelColor=black"></a>
   <a href="https://github.com/Shail-Shouryya/save-thread-result/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/Shail-Shouryya/save-thread-result?color=yellow&labelColor=black"></a>
@@ -21,7 +21,7 @@
 
 <details>
   <summary><b>Motivation</b></summary>
-  
+
 I created this package because I needed to [store the result](https://github.com/Shail-Shouryya/yt_videos_list/commit/8fc62703047b9f8de287306239885cd5138a8d7e) of a thread [while running tests](https://github.com/Shail-Shouryya/yt_videos_list/blob/master/python/tests/test_shared.py) for the `yt_videos_list` package and there seemed to be no simple way to get the result from `threading.Thread()` without importing other modules, creating a `Queue`, or creating a `list` and then storing the result in the list, or doing other hacky things.
 <details>
   <summary><b>Sources I looked at before creating the custom class below</b></summary>
@@ -38,7 +38,7 @@ I created this package because I needed to [store the result](https://github.com
 
 <details>
   <summary><b>Implementation in <code>yt_videos_list</code></b></summary>
-  
+
 - see commits:
   - [Add custom class to store thread result](https://github.com/Shail-Shouryya/yt_videos_list/commit/8fc62703047b9f8de287306239885cd5138a8d7e)
   - [Make ThreadWithResult attribute names more descriptive](https://github.com/Shail-Shouryya/yt_videos_list/commit/f1d58f6deeb2becf9038a94c3fb964bccc5321d3)
@@ -136,15 +136,15 @@ help(ThreadWithResult)
 - [PyPi Stats](https://pypistats.org/packages/save-thread-result)
 </details>
 <p>
-  <a href="https://pypistats.org/packages/save-thread-result"><img alt="PyPI - Daily Downloads" src="https://img.shields.io/pypi/dd/save-thread-result?labelColor=black&color=blue&label=PyPI%20downloads"></a>
+  <a href="https://pypistats.org/packages/save-thread-result"><img alt="PyPI - Daily Downloads" src="https://img.shields.io/pypi/dd/save-thread-result?labelColor=black&color=blue&label=PyPI%20downloads%20%28excludes%20mirrors%29"></a>
   <br>
-  <a href="https://pypistats.org/packages/save-thread-result"><img alt="PyPI - Weekly Downloads" src="https://img.shields.io/pypi/dw/save-thread-result?labelColor=black&color=yellow&label=PyPI%20downloads"></a>
-  <a href="https://pepy.tech/project/save-thread-result"><img alt="PePY Weekly Downloads" src="https://static.pepy.tech/personalized-badge/save-thread-result?period=week&units=international_system&left_color=black&right_color=blue&left_text=PePY%20Downloads/week"></a>
+  <a href="https://pypistats.org/packages/save-thread-result"><img alt="PyPI - Weekly Downloads" src="https://img.shields.io/pypi/dw/save-thread-result?labelColor=black&color=yellow&label=PyPI%20downloads%20%28excludes%20mirrors%29"></a>
+  <a href="https://pepy.tech/project/save-thread-result"><img alt="PePY Weekly Downloads" src="https://static.pepy.tech/personalized-badge/save-thread-result?period=week&units=international_system&left_color=black&right_color=blue&left_text=PePY%20Downloads/week%20%28includes%20mirrors%29"></a>
   <br>
-  <a href="https://pypistats.org/packages/save-thread-result"><img alt="PyPI - Monthly Downloads" src="https://img.shields.io/pypi/dm/save-thread-result?labelColor=black&color=blue&label=PyPI%20downloads"></a>
-  <a href="https://pepy.tech/project/save-thread-result"><img alt="PePY Monthly Downloads" src="https://static.pepy.tech/personalized-badge/save-thread-result?period=month&units=international_system&left_color=black&right_color=yellow&left_text=PePY%20Downloads/month"></a>
+  <a href="https://pypistats.org/packages/save-thread-result"><img alt="PyPI - Monthly Downloads" src="https://img.shields.io/pypi/dm/save-thread-result?labelColor=black&color=blue&label=PyPI%20downloads%20%28excludes%20mirrors%29"></a>
+  <a href="https://pepy.tech/project/save-thread-result"><img alt="PePY Monthly Downloads" src="https://static.pepy.tech/personalized-badge/save-thread-result?period=month&units=international_system&left_color=black&right_color=yellow&left_text=PePY%20Downloads/month%20%28includes%20mirrors%29"></a>
   <br>
-  <a href="https://pepy.tech/project/save-thread-result"><img alt="PePY Total Downloads" src="https://static.pepy.tech/personalized-badge/save-thread-result?period=total&units=international_system&left_color=black&right_color=yellow&left_text=PePY%20Downloads%20Total"></a>
+  <a href="https://pepy.tech/project/save-thread-result"><img alt="PePY Total Downloads" src="https://static.pepy.tech/personalized-badge/save-thread-result?period=total&units=international_system&left_color=black&right_color=yellow&left_text=PePY%20Downloads%20Total%20%28includes%20mirrors%29"></a>
 </p>
 
 If you found this interesting or useful, **please consider starring this repo** at [GitHub](https://github.com/Shail-Shouryya/save-thread-result) so other people can more easily find and use this. Thanks!
