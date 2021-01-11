@@ -93,3 +93,5 @@ help(ThreadWithResult)
   <br>
   <a href="https://pepy.tech/project/save-thread-result"><img alt="PePY Total Downloads" src="https://static.pepy.tech/personalized-badge/save-thread-result?period=total&units=international_system&left_color=black&right_color=yellow&left_text=PePY%20Downloads%20Total"></a>
 </p>
+
+If you found this interesting or useful, **please consider starring this repo** at [GitHub](https://github.com/Shail-Shouryya/save-thread-result) so other people can more easily find and use this. Thanks!

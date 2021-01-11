@@ -42,6 +42,14 @@ class ThreadWithResult(threading.Thread):
     closure function as the `target` function and no arguments
     for `args` since we pass the arguments to our actual function
     inside the closure function.
+
+    ========================================================
+    | If you found this interesting or useful,             |
+    | ** please consider starring this repo at **          |
+    | https://github.com/Shail-Shouryya/save-thread-result |
+    | so other people can                                  |
+    | more easily find and use this. Thanks!               |
+    ========================================================
     '''
     def __init__(self, group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None):
         def function():

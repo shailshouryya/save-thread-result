@@ -55,3 +55,5 @@
   <img alt="GitHub release (latest by SemVer including pre-releases) downloads" src="https://img.shields.io/github/downloads-pre/Shail-Shouryya/save-thread-result/latest/total?labelColor=black&label=GitHub%20release%20%28latest%20by%20SemVer%20including%20pre-releases%29%20downloads%40latest">
 </p>
 </details>
+
+If you found this interesting or useful, **please consider starring this repo** at [GitHub](https://github.com/Shail-Shouryya/save-thread-result) so other people can more easily find and use this. Thanks!
