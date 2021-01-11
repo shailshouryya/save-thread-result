@@ -46,8 +46,10 @@ I created this package because I needed to [store the result](https://github.com
 - see [Release 0.5.0](https://github.com/Shail-Shouryya/yt_videos_list/releases/tag/v0.5.0) for other threading bugs and workarounds!
 </details>
 
-This package is really only 5 lines of code:
+This package is really only 6 lines of code:
 ```python
+import threading
+
 class ThreadWithResult(threading.Thread):
     def __init__(self, group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None):
         def function():
