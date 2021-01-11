@@ -11,8 +11,15 @@ class ThreadWithResult(threading.Thread):
     Simple subclass wrapper around `threading.Thread` to get the return value
     from a thread in python (from `threading` built-in package in
     Python Standard library). Exact same interface for creating an instance
-    of this threading sublcass as `threading.Thread`! For details about
-    the interface features available from `threading.Thread`,
+    of this threading sublcass as `threading.Thread`:
+
+    thread = ThreadWithResult(
+        target = my_function,
+        args   = (my_function_arg1, my_function_arg2, ...)
+        kwargs = (my_function_kwarg1=kwarg1_value, my_function_kwarg2=kwarg2_value, ...)
+    )
+
+    For details about the interface features available from `threading.Thread`,
     see documentation under "Method resolution order" - accessible
     from python interpreter with:
     help(ThreadWithResult)
