@@ -24,13 +24,15 @@ class ThreadWithResult(threading.Thread):
     from python interpreter with:
     help(ThreadWithResult)
 
-    Helper class used solely for saving the result of a function called
+    OVERVIEW:
+
+    Helper class used to save the result of a function called
     through the threading interface, since `some_thread_object.start()`
     executes and returns immediately, without waiting for the thread
     to finish. The name of the function to run on a separate thread
     should be passed in through the `target` argument, and any
     arguments for the function should be passed in through the
-    `args` argument.
+    `args` and `kwargs` arguments.
 
     EXPLANATION:
 
@@ -42,12 +44,13 @@ class ThreadWithResult(threading.Thread):
     Since the function we want to run on a separate thread is no longer
     the function passed directly to `threading.Thread` (remember
     we pass the closure function instead!), we save the result of
-    the enclosed function as the `self.result` attribute for the
-    actual instance of this class.
+    the enclosed function to the `self.result` attribute of the
+    instance.
 
     We use inheritance to initialize this instance with the
     closure function as the `target` function and no arguments
-    for `args` since we pass the arguments to our actual function
+    for `args` or `kwargs` since
+    we pass the arguments to our actual function
     inside the closure function.
 
     ========================================================
