@@ -20,6 +20,53 @@
 </p>
 
 <details>
+  <summary><b>Motivation</b></summary>
+  
+I created this package because I needed to [store the result](https://github.com/Shail-Shouryya/yt_videos_list/commit/8fc62703047b9f8de287306239885cd5138a8d7e) of a thread [while running tests](https://github.com/Shail-Shouryya/yt_videos_list/blob/master/python/tests/test_shared.py) for the `yt_videos_list` package and there seemed to be no simple way to get the result from `threading.Thread()` without importing other modules, creating a `Queue`, or creating a `list` and then storing the result in the list, or doing other hacky things.
+<details>
+  <summary><b>Sources I looked at before creating the custom class below</b></summary>
+
+- [Return value from thread](https://stackoverflow.com/questions/1886090/return-value-from-thread)
+- [Threading in python: retrieve return value when using target= [duplicate]](https://stackoverflow.com/questions/2577233/threading-in-python-retrieve-return-value-when-using-target)
+- [How to get the return value from a thread in python?](https://stackoverflow.com/questions/6893968/how-to-get-the-return-value-from-a-thread-in-python_
+- [Using Python Threading and Returning Multiple Results (Tutorial)](https://www.shanelynn.ie/using-python-threading-for-multiple-results-queue/)
+- [How to get the return value from a thread using python](https://www.edureka.co/community/31966/how-to-get-the-return-value-from-a-thread-using-python)
+- [How to manage python threads results?](https://stackoverflow.com/questions/3239617/how-to-manage-python-threads-results#3239815)
+- [How to obtain the results from a pool of threads in python?](https://stackoverflow.com/questions/26104512/how-to-obtain-the-results-from-a-pool-of-threads-in-python)
+- [Google search](https://www.google.com/search?hl=en&q=python%20save%20thread%20result)
+</details>
+
+<details>
+  <summary><b>Implementation in <code>yt_videos_list</code></b></summary>
+  
+- see commits:
+  - [Add custom class to store thread result](https://github.com/Shail-Shouryya/yt_videos_list/commit/8fc62703047b9f8de287306239885cd5138a8d7e)
+  - [Make ThreadWithResult attribute names more descriptive](https://github.com/Shail-Shouryya/yt_videos_list/commit/f1d58f6deeb2becf9038a94c3fb964bccc5321d3)
+  - [Add ThreadWithResult class docstring (test_shared.py)](https://github.com/Shail-Shouryya/yt_videos_list/commit/b10480b6979f96443ab9e2e62e515c4da30eccdb)
+- see [Release 0.5.0](https://github.com/Shail-Shouryya/yt_videos_list/releases/tag/v0.5.0) for other threading bugs and workarounds!
+</details>
+
+This package is really only 5 lines of code:
+```python
+class ThreadWithResult(threading.Thread):
+    def __init__(self, group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None):
+        def function():
+            self.result = target(*args, **kwargs)
+        super().__init__(group=group, target=function, name=name, daemon=daemon)
+```
+
+The explanation is in the [docstrings](https://github.com/Shail-Shouryya/save-thread-result/blob/main/python/save_thread_result/thread_with_result.py) in the `thread_with_result` submodule, and is also accessible through the python interpreter with
+```
+python3     # MacOS/Linux
+python      # Windows
+```
+```python
+from save_thread_result import ThreadWithResult
+help(ThreadWithResult)
+```
+</details>
+
+<details>
   <summary><b>Installing the package</b></summary>
 
 Enter the following in your command line:
