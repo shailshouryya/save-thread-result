@@ -105,6 +105,10 @@ thread.join()
 if getattr(test_case_thread_1, 'result', None):
     print(thread.result)
 else:
+    # thread.result attribute not set - something caused
+    # the thread to terminate BEFORE the thread finished
+    # executing the function passed in through the
+    # `target` argument
     print('ERROR! Something went wrong while executing this thread, and the function you passed in did NOT complete!!')
 ```
 To see why checking `getattr(test_case_thread_1, 'result', None)` might be necessary for a more complicated scenario, [see this modification in a testing module](https://github.com/Shail-Shouryya/yt_videos_list/commit/27cc6a9fde087715c7179d6745b139daf3bb731e) from the [`yt_videos_list` package](https://github.com/Shail-Shouryya/yt_videos_list/tree/master/python)
