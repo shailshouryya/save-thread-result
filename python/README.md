@@ -114,7 +114,10 @@ else:
     # `target` argument
     print('ERROR! Something went wrong while executing this thread, and the function you passed in did NOT complete!!')
 ```
-To see why checking `getattr(thread, 'result', None)` might be necessary for a more complicated scenario, [see this modification in a testing module](https://github.com/Shail-Shouryya/yt_videos_list/commit/27cc6a9fde087715c7179d6745b139daf3bb731e) from the [`yt_videos_list` package](https://github.com/Shail-Shouryya/yt_videos_list/tree/master/python)
+To see why checking `getattr(thread, 'result', None)` might be necessary for a more complicated scenario, [see this modification in a testing module](https://github.com/Shail-Shouryya/yt_videos_list/commit/27cc6a9fde087715c7179d6745b139daf3bb731e) from the [`yt_videos_list` package](https://github.com/Shail-Shouryya/yt_videos_list/tree/master/python).
+
+Verified scenario:
+  - see this commit: [Import ThreadWithResult from save_thread_result package (↑ DRY)](https://github.com/Shail-Shouryya/yt_videos_list/commit/164434d6188efb2971979e4ba35b01e6615aece2)
 </details>
 
 <details>
