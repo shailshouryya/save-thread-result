@@ -109,7 +109,7 @@ To see why checking `getattr(test_case_thread_1, 'result', None)` might be neces
 </details>
 
 <details>
-  <summary><b>Seeing <b>all</b> available methods and attributes for `ThreadWithResult` class</b></summary>
+  <summary><b>Seeing <b>all</b> available methods and attributes for <code>ThreadWithResult</code> class</b></summary>
 
 ```
 python3     # MacOS/Linux
