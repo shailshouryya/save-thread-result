@@ -19,24 +19,52 @@ class ThreadWithResult(threading.Thread):
         kwargs = (my_function_kwarg1=kwarg1_value, my_function_kwarg2=kwarg2_value, ...)
     )
 
+    thread.start()
+
+    thread.join()
+
+    thread.result # returns value returned from function passed in to the `target` argument!
+
+
     NOTE: As of Release 0.0.3, you can also specify values for
-    `group`, `name`, and `daemon` if you want to set those
-    values manually.
+    the `group`, `name`, and `daemon` arguments if you want to
+    set those values manually.
 
     For details about the interface features available from `threading.Thread`,
     see documentation under "Method resolution order" - accessible
-    from python interpreter with:
+    from the python interpreter with:
     help(ThreadWithResult)
 
     OVERVIEW:
 
-    Helper class used to save the result of a function called
-    through the threading interface, since `some_thread_object.start()`
+    ThreadWithResult is a `threading.Thread` subclass used to save the
+    result of a function called through the threading interface, since
+
+    thread = threading.Thread(
+        target = my_function,
+        args   = (my_function_arg1, my_function_arg2, ...)
+        kwargs = (my_function_kwarg1=kwarg1_value, my_function_kwarg2=kwarg2_value, ...)
+    )
+
+    thread.start()
+
+    thread.join()
+
+    thread.result # does not work!
+
+
     executes and returns immediately, without waiting for the thread
-    to finish. The name of the function to run on a separate thread
-    should be passed in through the `target` argument, and any
-    arguments for the function should be passed in through the
-    `args` and `kwargs` arguments.
+    to finish AND WITHOUT providing any way to get the return result
+    of the function that ran on the thread.
+
+    The name of the function to run on a separate thread should
+    be passed to `ThreadWithResult` through the `target` argument,
+    and any arguments for the function should be passed in
+    through the `args` and `kwargs` arguments.
+
+    You can also specify `threading.Thread` attributes such as
+    `group`, `name`, and `daemon` by passing in the value you want to
+    set them to as keyword arguments to `ThreadWithResult`
 
     EXPLANATION:
 
@@ -56,6 +84,10 @@ class ThreadWithResult(threading.Thread):
     for `args` or `kwargs` since
     we pass the arguments to our actual function
     inside the closure function.
+
+    All other attributes (`group`, `name`, and `daemon`)
+    are initialized in the parent `threading.Thread` class
+    during the `super()` call.
 
     ========================================================
     | If you found this interesting or useful,             |
