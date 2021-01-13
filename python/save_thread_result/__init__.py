@@ -1,3 +1,8 @@
+'''
+Simple subclass wrapper around `threading.Thread` to get the return value
+from a thread in python (from `threading` built-in package in Python Standard library).
+Exact same interface for creating an instance of this threading sublcass as `threading.Thread`!
+'''
 from .thread_with_result import ThreadWithResult
 
 '''
