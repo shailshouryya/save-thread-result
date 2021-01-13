@@ -66,7 +66,7 @@ else:
     # `target` argument
     print('ERROR! Something went wrong while executing this thread, and the function you passed in did NOT complete!!')
 ```
-To see why checking `getattr(thread, 'result', None)` might be necessary for a more complicated scenario, [see this modification in a testing module](https://github.com/Shail-Shouryya/yt_videos_list/commit/27cc6a9fde087715c7179d6745b139daf3bb731e) from the [`yt_videos_list` package](https://github.com/Shail-Shouryya/yt_videos_list/tree/master/python). NOTE that the `result` attribute was named `failed` in this commit (the subclass implementation here assigned the result of the threaded function to `self.failed` instead of to `self.result`)!
+To see why checking `getattr(thread, 'result', None)` might be necessary for a more complicated scenario, [see this modification in a testing module](https://github.com/Shail-Shouryya/yt_videos_list/commit/27cc6a9fde087715c7179d6745b139daf3bb731e) from the [`yt_videos_list` package](https://github.com/Shail-Shouryya/yt_videos_list/tree/main/python). NOTE that the `result` attribute was named `failed` in this commit (the subclass implementation here assigned the result of the threaded function to `self.failed` instead of to `self.result`)!
 
 Verified scenario:
   - see this commit: [Import ThreadWithResult from save_thread_result package (↑ DRY)](https://github.com/Shail-Shouryya/yt_videos_list/commit/164434d6188efb2971979e4ba35b01e6615aece2)
@@ -89,7 +89,7 @@ help(ThreadWithResult)
 <details>
   <summary><b>Motivation for creating this package</b></summary>
 
-I created this package because I needed to [store the result](https://github.com/Shail-Shouryya/yt_videos_list/commit/8fc62703047b9f8de287306239885cd5138a8d7e) of a thread [while running tests](https://github.com/Shail-Shouryya/yt_videos_list/blob/master/python/tests/test_shared.py) for the `yt_videos_list` package and there seemed to be no simple way to get the result from `threading.Thread()` without importing other modules, creating a `Queue`, or creating a `list` and then storing the result in the list, or doing other hacky things.
+I created this package because I needed to [store the result](https://github.com/Shail-Shouryya/yt_videos_list/commit/8fc62703047b9f8de287306239885cd5138a8d7e) of a thread [while running tests](https://github.com/Shail-Shouryya/yt_videos_list/blob/main/python/tests/test_shared.py) for the `yt_videos_list` package and there seemed to be no simple way to get the result from `threading.Thread()` without importing other modules, creating a `Queue`, or creating a `list` and then storing the result in the list, or doing other hacky things.
   <details>
     <summary><b>Sources I looked at before creating the custom class below</b></summary>
 
