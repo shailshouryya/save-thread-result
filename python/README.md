@@ -14,6 +14,7 @@
   <a href="https://pypi.org/project/save-thread-result/#history/"><img alt="PyPI - Status" src="https://img.shields.io/pypi/status/save-thread-result?labelColor=black&label=PyPI%20-%20Status"></a>
   <br>
   <a href="https://pypi.org/project/save-thread-result/"><img alt="PyPI - Implementation" src="https://img.shields.io/pypi/implementation/save-thread-result?labelColor=black&label=PyPI%20-%20Implementation"></a>
+  <br>
   <a href="https://pypi.org/project/save-thread-result/"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/save-thread-result?labelColor=black&label=PyPI%20-%20Python%20Version"></a>
   <br>
   <a href="https://codebeat.co/projects/github-com-shail-shouryya-save-thread-result-main"><img alt="codebeat badge" src="https://codebeat.co/badges/a0678ef2-391a-4aee-82bf-cf223c4084ce" /></a>
