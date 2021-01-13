@@ -5,17 +5,6 @@ Exact same interface for creating an instance of this threading sublcass as `thr
 '''
 from .thread_with_result import ThreadWithResult
 
-'''
-version:              0.0.5
-author:               Shail-Shouryya
-email:                shailshouryya@gmail.com
-development_status:   4 - Beta
-intended_audience:    Developers
-license:              OSI Approved :: Apache License 2.0
-ideal_python_version: Python 3.0+
-source:               https://github.com/Shail-Shouryya/save-thread-result
-'''
-
 
 __version__              = '0.0.5'
 __author__               = 'Shail-Shouryya'
