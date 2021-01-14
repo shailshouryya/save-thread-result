@@ -82,6 +82,11 @@ python      # Windows
 ```python
 from save_thread_result import ThreadWithResult
 help(ThreadWithResult)
+
+# OR
+
+import save_thread_result
+help(save_thread_result.ThreadWithResult)
 ```
 
 </details>
