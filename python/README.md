@@ -87,6 +87,10 @@ help(ThreadWithResult)
 
 import save_thread_result
 help(save_thread_result.ThreadWithResult)
+
+# SEEING PACKAGE METADATA
+import save_thread_result
+help(save_thread_result)
 ```
 
 </details>
