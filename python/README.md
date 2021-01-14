@@ -111,7 +111,7 @@ I created this package because I needed to [store the result](https://github.com
     - [Make ThreadWithResult attribute names more descriptive](https://github.com/Shail-Shouryya/yt_videos_list/commit/f1d58f6deeb2becf9038a94c3fb964bccc5321d3)
     - [Add ThreadWithResult class docstring (test_shared.py)](https://github.com/Shail-Shouryya/yt_videos_list/commit/b10480b6979f96443ab9e2e62e515c4da30eccdb)
     - [Import ThreadWithResult from `save_thread_result` package (↑ DRY)](https://github.com/Shail-Shouryya/yt_videos_list/commit/164434d6188efb2971979e4ba35b01e6615aece2)
-  - see [Release 0.5.0](https://github.com/Shail-Shouryya/yt_videos_list/releases/tag/v0.5.0) for other threading bugs and workarounds!
+  - see `yt_videos_list` [Release 0.5.0](https://github.com/Shail-Shouryya/yt_videos_list/releases/tag/v0.5.0) for other threading bugs and workarounds!
   </details>
 
 This package is really only 6 lines of code:
