@@ -31,6 +31,11 @@ Enter the following in your command line:
 
 pip3 install -U save-thread-result     # MacOS/Linux
 pip  install -U save-thread-result     # Windows
+
+# if that doesn't work:
+
+python3 -m pip install -U save-thread-result     # MacOS/Linux
+python  -m pip install -U save-thread-result     # Windows
 ```
 </details>
 
