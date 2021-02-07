@@ -21,7 +21,7 @@
 </p>
 
 <details>
-  <summary><b>Installing the package</b></summary>
+  <summary><b>Installing the module</b></summary>
 
 Enter the following in your command line:
 
@@ -42,7 +42,7 @@ python  -m pip install -U save-thread-result     # Windows
 <details>
   <summary><b>Initializing and using the <code>ThreadWithResult</code> class</b></summary>
 
-This package uses a [`threading.Thread`](https://docs.python.org/3/library/threading.html#threading.Thread) subclass `ThreadWithResult` that saves the result of a thread (from [`threading`](https://docs.python.org/3/library/threading.html) built-in package in the [Python Standard library](https://docs.python.org/3/library/index.html)) as its `result` attribute - i.e. after the thread finishes running, call `thread.result` to get the return value from the function that ran on that thread.
+This module uses a [`threading.Thread`](https://docs.python.org/3/library/threading.html#threading.Thread) subclass `ThreadWithResult` that saves the result of a thread (from [`threading`](https://docs.python.org/3/library/threading.html) built-in module in the [Python Standard library](https://docs.python.org/3/library/index.html)) as its `result` attribute - i.e. after the thread finishes running, call `thread.result` to get the return value from the function that ran on that thread.
 
 ```
 python3     # MacOS/Linux
@@ -93,7 +93,7 @@ help(ThreadWithResult)
 import save_thread_result
 help(save_thread_result.ThreadWithResult)
 
-# SEEING PACKAGE METADATA
+# SEEING MODULE METADATA
 import save_thread_result
 help(save_thread_result)
 ```
@@ -101,9 +101,9 @@ help(save_thread_result)
 </details>
 
 <details>
-  <summary><b>Motivation for creating this package</b></summary>
+  <summary><b>Motivation for creating this module</b></summary>
 
-I created this package because I needed to [store the result](https://github.com/Shail-Shouryya/yt-videos-list/commit/8fc62703047b9f8de287306239885cd5138a8d7e) of a thread [while running tests](https://github.com/Shail-Shouryya/yt-videos-list/blob/main/python/tests/test_shared.py) for the `yt-videos-list` package and there seemed to be no simple way to get the result from `threading.Thread()` without importing other modules, creating a `Queue`, or creating a `list` and then storing the result in the list, or doing other hacky things.
+I created this module because I needed to [store the result](https://github.com/Shail-Shouryya/yt-videos-list/commit/8fc62703047b9f8de287306239885cd5138a8d7e) of a thread [while running tests](https://github.com/Shail-Shouryya/yt-videos-list/blob/main/python/tests/test_shared.py) for the `yt-videos-list` module and there seemed to be no simple way to get the result from `threading.Thread()` without importing other modules, creating a `Queue`, or creating a `list` and then storing the result in the list, or doing other hacky things.
   <details>
     <summary><b>Sources I looked at before creating the custom class below</b></summary>
 
@@ -128,7 +128,7 @@ I created this package because I needed to [store the result](https://github.com
   - see `yt-videos-list` [Release 0.5.0](https://github.com/Shail-Shouryya/yt-videos-list/releases/tag/v0.5.0) for other threading bugs and workarounds!
   </details>
 
-This package is really only 6 lines of code:
+This module is really only 6 lines of code:
 ```python
 import threading
 
