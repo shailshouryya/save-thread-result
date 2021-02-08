@@ -6,7 +6,7 @@ Exact same interface for creating an instance of this threading sublcass as `thr
 import threading
 
 
-__version__              = '0.0.5'
+__version__              = '0.0.6'
 __author__               = 'Shail-Shouryya'
 __email__                = 'shailshouryya@gmail.com'
 __development_status__   = '4 - Beta'
