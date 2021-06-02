@@ -3,7 +3,9 @@ Simple subclass wrapper around `threading.Thread` to get the return value
 from a thread in python (from `threading` built-in module in Python Standard library).
 Exact same interface for creating an instance of this threading sublcass as `threading.Thread`!
 '''
+import time
 import threading
+from datetime import datetime
 
 
 __version__              = '0.0.6'
@@ -109,5 +111,13 @@ class ThreadWithResult(threading.Thread):
     '''
     def __init__(self, group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None):
         def function():
+            start       = time.time()
+            thread_name = threading.current_thread().name
+            utc_offset  = time.strftime('%z')
+            now         = lambda: datetime.now().isoformat() + utc_offset
+            print(f'[{thread_name}]'.rjust(12) + f' {now()} Starting thread...')
             self.result = target(*args, **kwargs)
+            end = time.time()
+            print(f'[{thread_name}]'.rjust(12) + f' {now()} Finished thread! This thread took {end - start} seconds to complete.')
+
         super().__init__(group=group, target=function, name=name, daemon=daemon)
