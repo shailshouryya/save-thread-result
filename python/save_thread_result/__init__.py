@@ -101,6 +101,26 @@ class ThreadWithResult(threading.Thread):
     are initialized in the parent `threading.Thread` class
     during the `super()` call.
 
+
+
+    NOTE that with release 0.0.7, you can also specify if
+    you want the ThreadWithResult instance to print when the
+    thread starts, ends, and how long the thread took to execute!
+
+    If you want to mute this for all ThreadWithResult instances,
+    set the class `log_status` variable to False:
+
+    ThreadWithResult.log_status = False
+
+
+    If you only want to mute this for specific instances of
+    ThreadWithResult, set the `log_status` attribute for the
+    specific instance to False:
+
+    thread_with_result_instance.log_status = False
+
+
+
     ========================================================
     | If you found this interesting or useful,             |
     | ** please consider starring this repo at **          |
