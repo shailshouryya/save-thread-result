@@ -109,15 +109,18 @@ class ThreadWithResult(threading.Thread):
     | more easily find and use this. Thanks!               |
     ========================================================
     '''
+    log_status = True
     def __init__(self, group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None):
         def function():
-            start       = time.time()
-            thread_name = threading.current_thread().name
-            utc_offset  = time.strftime('%z')
-            now         = lambda: datetime.now().isoformat() + utc_offset
-            print(f'[{thread_name}]'.rjust(12) + f' {now()} Starting thread...')
+            if self.log_status is True:
+                start       = time.time()
+                thread_name = threading.current_thread().name
+                utc_offset  = time.strftime('%z')
+                now         = lambda: datetime.now().isoformat() + utc_offset
+                print(f'[{thread_name}]'.rjust(12) + f' {now()} Starting thread...')
             self.result = target(*args, **kwargs)
-            end = time.time()
-            print(f'[{thread_name}]'.rjust(12) + f' {now()} Finished thread! This thread took {end - start} seconds to complete.')
+            if self.log_status is True:
+                end = time.time()
+                print(f'[{thread_name}]'.rjust(12) + f' {now()} Finished thread! This thread took {end - start} seconds to complete.')
 
         super().__init__(group=group, target=function, name=name, daemon=daemon)
