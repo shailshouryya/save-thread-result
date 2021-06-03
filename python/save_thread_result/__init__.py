@@ -108,16 +108,16 @@ class ThreadWithResult(threading.Thread):
     thread starts, ends, and how long the thread took to execute!
 
     If you want to mute this for all ThreadWithResult instances,
-    set the class `log_status` variable to False:
+    set the class `log_thread_status` variable to False:
 
-    ThreadWithResult.log_status = False
+    ThreadWithResult.log_thread_status = False
 
 
     If you only want to mute this for specific instances of
-    ThreadWithResult, set the `log_status` attribute for the
+    ThreadWithResult, set the `log_thread_status` attribute for the
     specific instance to False:
 
-    thread_with_result_instance.log_status = False
+    thread_with_result_instance.log_thread_status = False
 
 
 
@@ -129,17 +129,17 @@ class ThreadWithResult(threading.Thread):
     | more easily find and use this. Thanks!               |
     ========================================================
     '''
-    log_status = True
+    log_thread_status = True
     def __init__(self, group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None):
         def function():
-            if self.log_status is True:
+            if self.log_thread_status is True:
                 start       = time.time()
                 thread_name = threading.current_thread().name
                 utc_offset  = time.strftime('%z')
                 now         = lambda: datetime.now().isoformat() + utc_offset
                 print(f'[{thread_name}]'.rjust(12) + f' {now()} Starting thread...')
             self.result = target(*args, **kwargs)
-            if self.log_status is True:
+            if self.log_thread_status is True:
                 end = time.time()
                 print(f'[{thread_name}]'.rjust(12) + f' {now()} Finished thread! This thread took {end - start} seconds to complete.')
 
