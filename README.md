@@ -35,6 +35,8 @@
   <img alt="GitHub commits since latest release (by SemVer including pre-releases)" src="https://img.shields.io/github/commits-since/Shail-Shouryya/save-thread-result/latest/main?color=pink&labelColor=black&include_prereleases">
 </p>
 
+## See the [releases](https://github.com/Shail-Shouryya/save-thread-result/releases) page for details about additions/changes to the package!
+
 ## API Guide
 ### [python](https://github.com/Shail-Shouryya/save-thread-result/tree/main/python)
 

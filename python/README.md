@@ -20,6 +20,8 @@
   <a href="https://codebeat.co/projects/github-com-shail-shouryya-save-thread-result-main"><img alt="codebeat badge" src="https://codebeat.co/badges/a0678ef2-391a-4aee-82bf-cf223c4084ce" /></a>
 </p>
 
+## See the [releases](https://github.com/Shail-Shouryya/save-thread-result/releases) page for details about additions/changes to the package!
+
 <details>
   <summary><b>Installing the module</b></summary>
 
