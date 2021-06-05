@@ -134,13 +134,13 @@ class ThreadWithResult(threading.Thread):
         def function():
             if self.log_thread_status is True:
                 start       = time.time()
-                thread_name = threading.current_thread().name
+                thread_name = f'[{threading.current_thread().name}]'
                 utc_offset  = time.strftime('%z')
                 now         = lambda: datetime.now().isoformat() + utc_offset
-                print(f'[{thread_name}]'.rjust(12) + f' {now()} Starting thread...')
+                print(f'{now()} {thread_name:>12} Starting thread...')
             self.result = target(*args, **kwargs)
             if self.log_thread_status is True:
                 end = time.time()
-                print(f'[{thread_name}]'.rjust(12) + f' {now()} Finished thread! This thread took {end - start} seconds to complete.')
+                print(f'{now()} {thread_name:>12} Finished thread! This thread took {end - start} seconds to complete.')
 
         super().__init__(group=group, target=function, name=name, daemon=daemon)
