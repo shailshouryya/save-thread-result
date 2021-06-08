@@ -104,21 +104,37 @@ class ThreadWithResult(threading.Thread):
 
 
     NOTE that with release 0.0.7, you can also specify if
-    you want the ThreadWithResult instance to print when the
+    you want the ThreadWithResult instance to log when the
     thread starts, ends, and how long the thread took to execute!
 
-    If you want to mute this for all ThreadWithResult instances,
-    set the class `log_thread_status` variable to False:
+    If you want to mute logging this message to the terminal for all
+    ThreadWithResult instances, set the class
+    `log_thread_status` variable to False:
 
     ThreadWithResult.log_thread_status = False
 
 
-    If you only want to mute this for specific instances of
-    ThreadWithResult, set the `log_thread_status` attribute for the
-    specific instance to False:
+    If you only want to mute logging this message to the terminal for
+    specific instances of ThreadWithResult, set the
+    `log_thread_status` attribute for the specific instance to False:
 
     thread_with_result_instance.log_thread_status = False
 
+
+    If you want to log this message to output file(s) for all
+    ThreadWithResult instances, set the class
+    `log_files` variable to an iterable object contatining
+    objects that support the .write() method:
+
+    ThreadWithResult.log_files = [file_object_1, file_object_2]
+
+
+    If you only want to log this message to output file(s) for
+    specific instances of ThreadWithResult, set the
+    `log_files` attribute for the specific instance to an iterable
+    object contatining objects that support the .write() method:
+
+    thread_with_result_instance.log_files = [file_object_1, file_object_2]
 
 
     ========================================================
