@@ -139,12 +139,12 @@ class ThreadWithResult(threading.Thread):
                 thread_name = f'[{threading.current_thread().name}]'
                 utc_offset  = time.strftime('%z')
                 now         = lambda: datetime.now().isoformat() + utc_offset
-                message     = f'{now()} {thread_name:>12} Starting thread...\n'
+                message     = f'{now()} {thread_name:>12} Starting thread...'
                 self.log(message)
             self.result = target(*args, **kwargs)
             if self.log_thread_status is True:
                 end     = time.time()
-                message = f'{now()} {thread_name:>12} Finished thread! This thread took {end - start} seconds to complete.\n'
+                message = f'{now()} {thread_name:>12} Finished thread! This thread took {end - start} seconds to complete.'
                 self.log(message)
         super().__init__(group=group, target=function, name=name, daemon=daemon)
 
@@ -167,7 +167,7 @@ class ThreadWithResult(threading.Thread):
             try:
                 for file in self.log_files:
                     try:
-                        file.write(message)
+                        file.write(f'{message}\n')
                     except AttributeError as error_message:
                         # AttributeError: 'str' object has no attribute 'write'
                         print(f'ERROR! Could not write to {file}. Please make sure that every object in {self.log_files} supports the .write() method. The exact error was:\n{error_message}')
