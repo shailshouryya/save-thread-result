@@ -134,7 +134,8 @@ class ThreadWithResult(threading.Thread):
 
     def __init__(self, group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None):
         def function():
-            if self.log_thread_status is True:
+            log_condition = self.log_thread_status is True or self.log_files is not None
+            if log_condition:
                 start       = time.time()
                 thread_name = f'[{threading.current_thread().name}]'
                 utc_offset  = time.strftime('%z')
@@ -142,7 +143,7 @@ class ThreadWithResult(threading.Thread):
                 message     = f'{now()} {thread_name:>12} Starting thread...'
                 self.log(message)
             self.result = target(*args, **kwargs)
-            if self.log_thread_status is True:
+            if log_condition:
                 end     = time.time()
                 message = f'{now()} {thread_name:>12} Finished thread! This thread took {end - start} seconds to complete.'
                 self.log(message)
@@ -174,4 +175,5 @@ class ThreadWithResult(threading.Thread):
             except TypeError as error_message:
                 # TypeError: 'int' object is not iterable
                 print(f'ERROR! Could not write to {self.log_files}. Please make sure that the log_files attribute for {self.__class__.name} is an iterable object containing objects that support the .write() method. The exact error was:\n{error_message}')
-        print(message)
+        if self.log_thread_status is True:
+            print(message)
