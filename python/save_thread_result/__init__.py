@@ -170,9 +170,11 @@ class ThreadWithResult(threading.Thread):
                     try:
                         file.write(f'{message}\n')
                     except AttributeError as error_message:
+                        # example exception:
                         # AttributeError: 'str' object has no attribute 'write'
                         print(f'ERROR! Could not write to {file}. Please make sure that every object in {self.log_files} supports the .write() method. The exact error was:\n{error_message}')
             except TypeError as error_message:
+                # example exception:
                 # TypeError: 'int' object is not iterable
                 print(f'ERROR! Could not write to {self.log_files}. Please make sure that the log_files attribute for {self.__class__.name} is an iterable object containing objects that support the .write() method. The exact error was:\n{error_message}')
         if self.log_thread_status is True:
