@@ -153,15 +153,15 @@ class ThreadWithResult(threading.Thread):
             log_condition = self.log_thread_status is True or self.log_files is not None
             if log_condition:
                 start       = time.time()
-                thread_name = f'[{threading.current_thread().name}]'
+                thread_name = '[' + threading.current_thread().name + ']'
                 utc_offset  = time.strftime('%z')
-                now         = lambda: datetime.now().isoformat() + utc_offset
-                message     = f'{now()} {thread_name:>12} Starting thread...'
+                now         = lambda: datetime.now().isoformat() + utc_offset + ' '
+                message     = now() + thread_name.rjust(12) + ' Starting thread...'
                 self.log(message)
             self.result = target(*args, **kwargs)
             if log_condition:
                 end     = time.time()
-                message = f'{now()} {thread_name:>12} Finished thread! This thread took {end - start} seconds to complete.'
+                message = now() + thread_name.rjust(12) + ' Finished thread! This thread took ' + str(end - start) + ' seconds to complete.'
                 self.log(message)
         super().__init__(group=group, target=function, name=name, daemon=daemon)
 
@@ -184,14 +184,14 @@ class ThreadWithResult(threading.Thread):
             try:
                 for file in self.log_files:
                     try:
-                        file.write(f'{message}\n')
+                        file.write(message + '\n')
                     except AttributeError as error_message:
                         # example exception:
                         # AttributeError: 'str' object has no attribute 'write'
-                        print(f'ERROR! Could not write to {file}. Please make sure that every object in {self.log_files} supports the .write() method. The exact error was:\n{error_message}')
+                        print('ERROR! Could not write to ' + str(file) + '. Please make sure that every object in ' + str(self.log_files) + ' supports the .write() method. The exact error was:\n' + str(error_message))
             except TypeError as error_message:
                 # example exception:
                 # TypeError: 'int' object is not iterable
-                print(f'ERROR! Could not write to {self.log_files}. Please make sure that the log_files attribute for {self.__class__.name} is an iterable object containing objects that support the .write() method. The exact error was:\n{error_message}')
+                print('ERROR! Could not write to ' + str(self.log_files) + '. Please make sure that the log_files attribute for ' + str(self.__class__.name) + ' is an iterable object containing objects that support the .write() method. The exact error was:\n' + str(error_message))
         if self.log_thread_status is True:
             print(message)
