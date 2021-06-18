@@ -136,6 +136,10 @@ class ThreadWithResult(threading.Thread):
 
     thread_with_result_instance.log_files = [file_object_1, file_object_2]
 
+    For an example in a real application, see how ThreadWithResult is
+    used in the `create_list_from()` method of the ListCreator class at
+    https://github.com/Shail-Shouryya/yt-videos-list/blob/main/python/dev/__init__.py
+
 
     ========================================================
     | If you found this interesting or useful,             |
