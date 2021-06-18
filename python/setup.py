@@ -33,7 +33,7 @@ setup(
     # Python projects adopting semantic versioning should abide by clauses 1-8 of the Semantic Versioning 2.0.0 specification: https://semver.org/.
     version                       = '0.0.6',
     name                          = 'save-thread-result',
-    description                   = 'Simple subclass wrapper around `threading.Thread` to get the return value from a thread in python (from `threading` built-in module in Python Standard library). Exact same interface for creating an instance of this threading sublcass as `threading.Thread`!',
+    description                   = 'Simple subclass wrapper around `threading.Thread` to get the return value from a thread in python. Exact same interface as `threading.Thread`! 🌟 Star this repo if you found it useful! 🌟',
     long_description              = long_description,
     long_description_content_type = 'text/markdown',
     url                           = 'https://github.com/Shail-Shouryya/save-thread-result',

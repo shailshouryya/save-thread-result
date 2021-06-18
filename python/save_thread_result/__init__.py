@@ -1,7 +1,8 @@
 '''
 Simple subclass wrapper around `threading.Thread` to get the return value
-from a thread in python (from `threading` built-in module in Python Standard library).
-Exact same interface for creating an instance of this threading sublcass as `threading.Thread`!
+from a thread in python. Exact same interface as `threading.Thread`!
+🌟 Star this repo if you found it useful! 🌟
+https://github.com/Shail-Shouryya/save-thread-result
 '''
 import time
 import threading
