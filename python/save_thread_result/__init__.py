@@ -182,11 +182,10 @@ class ThreadWithResult(threading.Thread):
         `log_thread_status` instance attribute
         over the `log_thread_status` class attribute!
 
-        If the instance or class attribute `log_files` is an iterable
-        object containing objects that support the .write() method,
-        this function also logs the information to every location in
+        This function also logs the information to every location in
         `log_files` in addition to printing the thread information
-        to the terminal.
+        to the terminal if the instance or class attribute `log_files` is an
+        iterable object containing objects that support the .write() method.
         Keep in mind python prioritizes the
         `log_files` instance attribute
         over the `log_files` class attribute!
