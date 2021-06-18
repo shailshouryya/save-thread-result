@@ -116,30 +116,30 @@ class ThreadWithResult(threading.Thread):
 
 
     If you only want to mute logging this message to the terminal for
-    specific instances of ThreadWithResult, set the
+    a specific instance of ThreadWithResult, set the
     `log_thread_status` attribute for the specific instance to False:
 
     thread_with_result_instance.log_thread_status = False
 
 
-    If you want to log this message to output file(s) for all
-    ThreadWithResult instances, set the
+    If you want to log this message to an output file (or multiple output files)
+    for all ThreadWithResult instances, set the
     `log_files` class attribute to an iterable object contatining
     objects that support the .write() method:
 
     ThreadWithResult.log_files = [file_object_1, file_object_2]
 
 
-    If you only want to log this message to output file(s) for
-    specific instances of ThreadWithResult, set the
+    If you only want to log this message to an output file (or multiple output files)
+    for a specific instance of ThreadWithResult, set the
     `log_files` attribute for the specific instance to an iterable
     object contatining objects that support the .write() method:
 
     thread_with_result_instance.log_files = [file_object_1, file_object_2]
 
-    For an example in a real application, see how ThreadWithResult is
-    used in the `create_list_from()` method of the ListCreator class at
-    https://github.com/Shail-Shouryya/yt-videos-list/blob/main/python/dev/__init__.py
+    For an example that uses this logging feature in a real application, see how
+    the `create_list_from()` method of the ListCreator class uses ThreadWithResult
+    at https://github.com/Shail-Shouryya/yt-videos-list/blob/main/python/dev/__init__.py
 
 
     ========================================================
