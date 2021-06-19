@@ -9,7 +9,7 @@ import threading
 from datetime import datetime
 
 
-__version__              = '0.0.6'
+__version__              = '0.0.7'
 __author__               = 'Shail-Shouryya'
 __email__                = 'shailshouryya@gmail.com'
 __development_status__   = '4 - Beta'
