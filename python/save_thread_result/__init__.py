@@ -1,7 +1,7 @@
 '''
 Simple subclass wrapper around `threading.Thread` to get the return value
 from a thread in python. Exact same interface as `threading.Thread`!
-🌟 Star this repo if you found it useful! 🌟
+🌟 Star this repo if you found this useful! 🌟
 https://github.com/Shail-Shouryya/save-thread-result
 '''
 import time
@@ -66,9 +66,12 @@ class ThreadWithResult(threading.Thread):
     thread.result # does not work!
 
 
-    executes and returns immediately, without waiting for the thread
-    to finish AND WITHOUT providing any way to get the return result
+    executes and returns immediately after the thread finishes,
+    WITHOUT providing any way to get the returned result
     of the function that ran on the thread.
+
+
+    USAGE:
 
     The name of the function to run on a separate thread should
     be passed to `ThreadWithResult` through the `target` argument,
@@ -84,10 +87,10 @@ class ThreadWithResult(threading.Thread):
     We create a closure function that runs the actual function we want
     to run on a separate thread and enclose the function passed to
     `target` inside the closure function, and pass the CLOSURE FUNCTION
-    as the function to the `target` argument for `threading.Thread`.
+    as the function to the `target` argument to `threading.Thread`.
 
     Since the function we want to run on a separate thread is no longer
-    the function passed directly to `threading.Thread` (remember
+    the function passed directly to `threading.Thread` (remember,
     we pass the closure function instead!), we save the result of
     the enclosed function to the `self.result` attribute of the
     instance.
@@ -145,7 +148,7 @@ class ThreadWithResult(threading.Thread):
 
     NOTE: since python prioritizes instance attributes over class attributes,
     if both the instance attribute and class attribute are set to different values,
-    this function uses the value set for the instance attribute.
+    python uses the value set for the instance attribute.
     For more information, look up:
     class attributes vs instance attributes in python
     scope resolution using the LEGB rule for python
@@ -195,8 +198,14 @@ class ThreadWithResult(threading.Thread):
         starts, ends, and how long the thread takes to execute.
 
         This function runs and prints the thread information to the
-        terminal when the instance attribute or class attribute
-        `log_thread_status` is set to `True`.
+        terminal when any of the following statements are true:
+          * the instance attribute `log_thread_status` is `True`
+          * the instance attribute `log_thread_status` is unset but
+               the class attribute `log_thread_status` is `True`
+          * the instance attribute `log_files` is
+            an iterable object containing objects that support the .write() method
+          * the instance attribute `log_files` is unset but
+               the class attribute is an iterable object containing objects that support the .write() method
 
         This function also logs the information to every location in
         `log_files` in addition to printing the thread information
