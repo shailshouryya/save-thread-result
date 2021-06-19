@@ -181,15 +181,15 @@ class ThreadWithResult(threading.Thread):
                 utc_offset  = time.strftime('%z')
                 now         = lambda: datetime.now().isoformat() + utc_offset + ' '
                 message     = now() + thread_name.rjust(12) + ' Starting thread...'
-                self.log(message)
+                self.__log(message)
             self.result = target(*args, **kwargs)
             if log_condition:
                 end     = time.time()
                 message = now() + thread_name.rjust(12) + ' Finished thread! This thread took ' + str(end - start) + ' seconds to complete.'
-                self.log(message)
+                self.__log(message)
         super().__init__(group=group, target=function, name=name, daemon=daemon)
 
-    def log(self, message):
+    def __log(self, message):
         '''
         Helper function to print when the thread
         starts, ends, and how long the thread takes to execute.
