@@ -129,6 +129,10 @@ I created this module because I needed to [store the result](https://github.com/
     - [Import ThreadWithResult from `save_thread_result` package (↑ DRY)](https://github.com/Shail-Shouryya/yt-videos-list/commit/164434d6188efb2971979e4ba35b01e6615aece2)
   - see `yt-videos-list` [Release 0.5.0](https://github.com/Shail-Shouryya/yt-videos-list/releases/tag/v0.5.0) for other threading bugs and workarounds!
   </details>
+</details>
+
+<details>
+  <summary><b><code>ThreadWithResult</code> logic</b></summary>
 
 This module is really only 6 lines of code:
 ```python
@@ -141,14 +145,14 @@ class ThreadWithResult(threading.Thread):
         super().__init__(group=group, target=function, name=name, daemon=daemon)
 ```
 
-The explanation is in the [docstrings](https://github.com/Shail-Shouryya/save-thread-result/blob/main/python/save_thread_result/thread_with_result.py) in the `thread_with_result` module, and is also accessible through the python interpreter with
+For a more detailed explanation, read through the [docstrings](https://github.com/Shail-Shouryya/save-thread-result/blob/main/python/save_thread_result/thread_with_result.py) in the `thread_with_result` module. This is also accessible through the python interpreter with
 ```
 python3     # MacOS/Linux
 python      # Windows
 ```
 ```python
-from save_thread_result import ThreadWithResult
-help(ThreadWithResult)
+import save_thread_result
+help(save_thread_result)
 ```
 </details>
 
