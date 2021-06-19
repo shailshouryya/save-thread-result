@@ -67,8 +67,8 @@ class ThreadWithResult(threading.Thread):
 
 
     executes and returns immediately after the thread finishes,
-    WITHOUT providing any way to get the returned result
-    of the function that ran on the thread.
+    WITHOUT providing any way to get the return value
+    from the function that ran on that thread.
 
 
     USAGE:
@@ -82,12 +82,16 @@ class ThreadWithResult(threading.Thread):
     `group`, `name`, and `daemon` by passing in the value you want to
     set them to as keyword arguments to `ThreadWithResult`
 
+
     EXPLANATION:
 
-    We create a closure function that runs the actual function we want
-    to run on a separate thread and enclose the function passed to
-    `target` inside the closure function, and pass the CLOSURE FUNCTION
-    as the function to the `target` argument to `threading.Thread`.
+    We create a closure function to run the actual function we want
+    to run on a separate thread, enclose the function passed to
+    `target` - along with the arguments provided to `args` and `kwargs` -
+    inside the closure function, and pass the CLOSURE FUNCTION
+    as the function to the `target` argument in the
+    `super.__init__()` call to `threading.Thread`:
+    super().__init__(group=group, target=closure_function, name=name, daemon=daemon)
 
     Since the function we want to run on a separate thread is no longer
     the function passed directly to `threading.Thread` (remember,
@@ -97,13 +101,13 @@ class ThreadWithResult(threading.Thread):
 
     We use inheritance to initialize this instance with the
     closure function as the `target` function and no arguments
-    for `args` or `kwargs` since
-    we pass the arguments to our actual function
-    inside the closure function.
+    for `args` or `kwargs` (since we pass
+    the `args` and `kwargs` arguments to the original
+    `target` function INSIDE the closure function).
 
     All other attributes (`group`, `name`, and `daemon`)
     are initialized in the parent `threading.Thread` class
-    during the `super()` call.
+    during the `super().__init__()` call.
 
 
 
@@ -111,12 +115,12 @@ class ThreadWithResult(threading.Thread):
     you want the ThreadWithResult instance to log when the
     thread starts, ends, and how long the thread takes to execute!
 
+
     If you want to mute logging this message to the terminal for all
     ThreadWithResult instances, set the
     `log_thread_status` class attribute to False:
 
     ThreadWithResult.log_thread_status = False
-
 
     If you only want to mute logging this message to the terminal for
     a specific instance of ThreadWithResult, set the
