@@ -24,19 +24,15 @@ class ThreadWithResult(threading.Thread):
     The `threading.Thread` subclass ThreadWithResult saves the result of a thread
     as its `result` attribute - i.e. call `thread_with_result_instance_1.result`
     after `thread_with_result_instance_1` finishes running to get the return
-    value from the function that ran on that thread.
-
-    thread = ThreadWithResult(
+    value from the function that ran on that thread:
+    >>> thread = ThreadWithResult(
         target = my_function,
         args   = (my_function_arg1, my_function_arg2, ...)
         kwargs = {my_function_kwarg1: kwarg1_value, my_function_kwarg2: kwarg2_value, ...}
     )
-
-    thread.start()
-
-    thread.join()
-
-    thread.result # returns value returned from function passed in to the `target` argument!
+    >>> thread.start()
+    >>> thread.join()
+    >>> thread.result # returns value returned from function passed in to the `target` argument!
 
 
     NOTE: As of Release 0.0.3, you can also specify values for
@@ -48,31 +44,24 @@ class ThreadWithResult(threading.Thread):
     from the python interpreter with:
     help(ThreadWithResult)
 
-    OVERVIEW:
 
+    OVERVIEW:
     ThreadWithResult is a `threading.Thread` subclass used to save the
     result of a function called through the threading interface, since
-
-    thread = threading.Thread(
+    >>> thread = threading.Thread(
         target = my_function,
         args   = (my_function_arg1, my_function_arg2, ...)
         kwargs = {my_function_kwarg1: kwarg1_value, my_function_kwarg2: kwarg2_value, ...}
     )
-
-    thread.start()
-
-    thread.join()
-
-    thread.result # does not work!
-
-
+    >>> thread.start()
+    >>> thread.join()
+    >>> thread.result # does not work!
     executes and returns immediately after the thread finishes,
     WITHOUT providing any way to get the return value
     from the function that ran on that thread.
 
 
     USAGE:
-
     The name of the function to run on a separate thread should
     be passed to `ThreadWithResult` through the `target` argument,
     and any arguments for the function should be passed in
@@ -84,7 +73,6 @@ class ThreadWithResult(threading.Thread):
 
 
     EXPLANATION:
-
     We create a closure function to run the actual function we want
     to run on a separate thread, enclose the function passed to
     `target` - along with the arguments provided to `args` and `kwargs` -
@@ -119,14 +107,12 @@ class ThreadWithResult(threading.Thread):
     If you want to mute logging this message to the terminal for all
     ThreadWithResult instances, set the
     `log_thread_status` class attribute to False:
-
-    ThreadWithResult.log_thread_status = False
+    >>> ThreadWithResult.log_thread_status = False
 
     If you only want to mute logging this message to the terminal for
     a specific instance of ThreadWithResult, set the
     `log_thread_status` attribute for the specific instance to False:
-
-    thread_with_result_instance.log_thread_status = False
+    >>> thread_with_result_instance.log_thread_status = False
 
     Keep in mind python prioritizes the `log_thread_status` instance attribute
     over the `log_thread_status` class attribute!
@@ -136,16 +122,14 @@ class ThreadWithResult(threading.Thread):
     for all ThreadWithResult instances, set the
     `log_files` class attribute to an iterable object contatining
     objects that support the .write() method:
-
-    ThreadWithResult.log_files = [file_object_1, file_object_2]
+    >>> ThreadWithResult.log_files = [file_object_1, file_object_2]
 
 
     If you only want to log this message to an output file (or multiple output files)
     for a specific instance of ThreadWithResult, set the
     `log_files` attribute for the specific instance to an iterable
     object contatining objects that support the .write() method:
-
-    thread_with_result_instance.log_files = [file_object_1, file_object_2]
+    >>> thread_with_result_instance.log_files = [file_object_1, file_object_2]
 
     Keep in mind python prioritizes the `log_files` instance attribute
     over the `log_files` class attribute!
