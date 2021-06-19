@@ -121,6 +121,9 @@ class ThreadWithResult(threading.Thread):
 
     thread_with_result_instance.log_thread_status = False
 
+    Keep in mind python prioritizes the `log_thread_status` instance attribute
+    over the `log_thread_status` class attribute!
+
 
     If you want to log this message to an output file (or multiple output files)
     for all ThreadWithResult instances, set the
@@ -136,6 +139,22 @@ class ThreadWithResult(threading.Thread):
     object contatining objects that support the .write() method:
 
     thread_with_result_instance.log_files = [file_object_1, file_object_2]
+
+    Keep in mind python prioritizes the `log_files` instance attribute
+    over the `log_files` class attribute!
+
+    NOTE: since python prioritizes instance attributes over class attributes,
+    if both the instance attribute and class attribute are set to different values,
+    this function uses the value set for the instance attribute.
+    For more information, look up:
+    class attributes vs instance attributes in python
+    scope resolution using the LEGB rule for python
+
+    Also note, by default the `log_thread_status`
+    class attribute is set to `True`, and the `log_files`
+    class attribute set to `None` - neither attributes
+    exist as instance attributes by default!
+
 
     For an example that uses this logging feature in a real application, see how
     the `create_list_from()` method of the ListCreator class uses ThreadWithResult
@@ -178,31 +197,11 @@ class ThreadWithResult(threading.Thread):
         This function runs and prints the thread information to the
         terminal when the instance attribute or class attribute
         `log_thread_status` is set to `True`.
-        Keep in mind python prioritizes the
-        `log_thread_status` instance attribute
-        over the `log_thread_status` class attribute!
 
         This function also logs the information to every location in
         `log_files` in addition to printing the thread information
         to the terminal if the instance or class attribute `log_files` is an
         iterable object containing objects that support the .write() method.
-        Keep in mind python prioritizes the
-        `log_files` instance attribute
-        over the `log_files` class attribute!
-
-        NOTE: since python prioritizes instance attributes
-        over class attributes, if both the instance attribute and
-        class attribute are set to different values, this function
-        uses the value set for the instance attribute. For more
-        information, look up:
-        class attributes vs instance attributes in python
-        scope resolution using the LEGB rule for python
-
-        Also note, by default the `log_thread_status`
-        class attribute is set to `True`, and the `log_files`
-        class attribute set to `None` - neither attributes
-        exist as instance attributes by default!
-
         '''
         if self.log_files is not None:
             try:
