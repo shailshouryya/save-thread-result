@@ -145,7 +145,7 @@ class ThreadWithResult(threading.Thread):
         super().__init__(group=group, target=function, name=name, daemon=daemon)
 ```
 
-For a more detailed explanation, read through the [docstrings](https://github.com/Shail-Shouryya/save-thread-result/blob/main/python/save_thread_result/thread_with_result.py) in the `thread_with_result` module. This is also accessible through the python interpreter with
+For a more detailed explanation, read through the [docstrings](https://github.com/Shail-Shouryya/save-thread-result/blob/main/python/save_thread_result/__init__.py) in the `thread_with_result` module. This is also accessible through the python interpreter with
 ```
 python3     # MacOS/Linux
 python      # Windows
