@@ -1,11 +1,11 @@
 # Python API
 
 <p align="center">
-  <a href="https://github.com/Shail-Shouryya/save-thread-result/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/Shail-Shouryya/save-thread-result?color=yellow&labelColor=black"></a>
+  <a href="https://github.com/slow-but-steady/save-thread-result/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/slow-but-steady/save-thread-result?color=yellow&labelColor=black"></a>
   <a href="https://docs.python.org/3/index.html">    <img src="https://img.shields.io/badge/python-3.0%2B-blue?labelColor=black"/></a>
   <a href="https://www.python.org/dev/peps/pep-0008"><img src="https://img.shields.io/badge/code%20style-PEP8-yellow.svg?labelColor=black"/></a>
-  <a href="https://github.com/Shail-Shouryya/save-thread-result/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Shail-Shouryya/save-thread-result?color=blue&labelColor=black"></a>
-  <a href="https://github.com/Shail-Shouryya/save-thread-result/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/Shail-Shouryya/save-thread-result?color=yellow&labelColor=black"></a>
+  <a href="https://github.com/slow-but-steady/save-thread-result/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/slow-but-steady/save-thread-result?color=blue&labelColor=black"></a>
+  <a href="https://github.com/slow-but-steady/save-thread-result/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/slow-but-steady/save-thread-result?color=yellow&labelColor=black"></a>
   <br>
   <a href="https://badge.fury.io/py/save-thread-result"><img src="https://badge.fury.io/py/save-thread-result.svg" alt="PyPI version" height="20"></a>
   <br>
@@ -17,10 +17,10 @@
   <br>
   <a href="https://pypi.org/project/save-thread-result/"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/save-thread-result?labelColor=black&label=PyPI%20-%20Python%20Version"></a>
   <br>
-  <a href="https://codebeat.co/projects/github-com-shail-shouryya-save-thread-result-main"><img alt="codebeat badge" src="https://codebeat.co/badges/a0678ef2-391a-4aee-82bf-cf223c4084ce" /></a>
+  <a href="https://codebeat.co/projects/github-com-slow-but-steady-save-thread-result-main"><img alt="codebeat badge" src="https://codebeat.co/badges/a0678ef2-391a-4aee-82bf-cf223c4084ce" /></a>
 </p>
 
-## See the [releases](https://github.com/Shail-Shouryya/save-thread-result/releases) page for details about additions/changes to the package!
+## See the [releases](https://github.com/slow-but-steady/save-thread-result/releases) page for details about additions/changes to the package!
 
 <details>
   <summary><b>Installing the module</b></summary>
@@ -73,10 +73,10 @@ else:
     # `target` argument
     print('ERROR! Something went wrong while executing this thread, and the function you passed in did NOT complete!!')
 ```
-To see why checking `getattr(thread, 'result', None)` might be necessary for a more complicated scenario, [see this modification in a testing module](https://github.com/Shail-Shouryya/yt-videos-list/commit/27cc6a9fde087715c7179d6745b139daf3bb731e) from the [`yt-videos-list` package](https://github.com/Shail-Shouryya/yt-videos-list/tree/main/python). NOTE that the `result` attribute was named `failed` in this commit (the subclass implementation here assigned the result of the threaded function to `self.failed` instead of to `self.result`)!
+To see why checking `getattr(thread, 'result', None)` might be necessary for a more complicated scenario, [see this modification in a testing module](https://github.com/slow-but-steady/yt-videos-list/commit/27cc6a9fde087715c7179d6745b139daf3bb731e) from the [`yt-videos-list` package](https://github.com/slow-but-steady/yt-videos-list/tree/main/python). NOTE that the `result` attribute was named `failed` in this commit (the subclass implementation here assigned the result of the threaded function to `self.failed` instead of to `self.result`)!
 
 Verified scenario:
-  - see this commit: [Import ThreadWithResult from save_thread_result package (↑ DRY)](https://github.com/Shail-Shouryya/yt-videos-list/commit/164434d6188efb2971979e4ba35b01e6615aece2)
+  - see this commit: [Import ThreadWithResult from save_thread_result package (↑ DRY)](https://github.com/slow-but-steady/yt-videos-list/commit/164434d6188efb2971979e4ba35b01e6615aece2)
 </details>
 
 <details>
@@ -105,7 +105,7 @@ help(save_thread_result)
 <details>
   <summary><b>Motivation for creating this module</b></summary>
 
-I created this module because I needed to [store the result](https://github.com/Shail-Shouryya/yt-videos-list/commit/8fc62703047b9f8de287306239885cd5138a8d7e) of a thread [while running tests](https://github.com/Shail-Shouryya/yt-videos-list/blob/main/python/tests/test_shared.py) for the `yt-videos-list` module and there seemed to be no simple way to get the result from `threading.Thread()` without importing other modules, creating a `Queue`, or creating a `list` and then storing the result in the list, or doing other hacky things.
+I created this module because I needed to [store the result](https://github.com/slow-but-steady/yt-videos-list/commit/8fc62703047b9f8de287306239885cd5138a8d7e) of a thread [while running tests](https://github.com/slow-but-steady/yt-videos-list/blob/main/python/tests/test_shared.py) for the `yt-videos-list` module and there seemed to be no simple way to get the result from `threading.Thread()` without importing other modules, creating a `Queue`, or creating a `list` and then storing the result in the list, or doing other hacky things.
   <details>
     <summary><b>Sources I looked at before creating the custom class below</b></summary>
 
@@ -123,11 +123,11 @@ I created this module because I needed to [store the result](https://github.com/
     <summary><b>Implementation in <code>yt-videos-list</code></b></summary>
 
   - see commits:
-    - [Add custom class to store thread result](https://github.com/Shail-Shouryya/yt-videos-list/commit/8fc62703047b9f8de287306239885cd5138a8d7e)
-    - [Make ThreadWithResult attribute names more descriptive](https://github.com/Shail-Shouryya/yt-videos-list/commit/f1d58f6deeb2becf9038a94c3fb964bccc5321d3)
-    - [Add ThreadWithResult class docstring (test_shared.py)](https://github.com/Shail-Shouryya/yt-videos-list/commit/b10480b6979f96443ab9e2e62e515c4da30eccdb)
-    - [Import ThreadWithResult from `save_thread_result` package (↑ DRY)](https://github.com/Shail-Shouryya/yt-videos-list/commit/164434d6188efb2971979e4ba35b01e6615aece2)
-  - see `yt-videos-list` [Release 0.5.0](https://github.com/Shail-Shouryya/yt-videos-list/releases/tag/v0.5.0) for other threading bugs and workarounds!
+    - [Add custom class to store thread result](https://github.com/slow-but-steady/yt-videos-list/commit/8fc62703047b9f8de287306239885cd5138a8d7e)
+    - [Make ThreadWithResult attribute names more descriptive](https://github.com/slow-but-steady/yt-videos-list/commit/f1d58f6deeb2becf9038a94c3fb964bccc5321d3)
+    - [Add ThreadWithResult class docstring (test_shared.py)](https://github.com/slow-but-steady/yt-videos-list/commit/b10480b6979f96443ab9e2e62e515c4da30eccdb)
+    - [Import ThreadWithResult from `save_thread_result` package (↑ DRY)](https://github.com/slow-but-steady/yt-videos-list/commit/164434d6188efb2971979e4ba35b01e6615aece2)
+  - see `yt-videos-list` [Release 0.5.0](https://github.com/slow-but-steady/yt-videos-list/releases/tag/v0.5.0) for other threading bugs and workarounds!
   </details>
 </details>
 
@@ -145,7 +145,7 @@ class ThreadWithResult(threading.Thread):
         super().__init__(group=group, target=function, name=name, daemon=daemon)
 ```
 
-For a more detailed explanation, read through the [docstrings](https://github.com/Shail-Shouryya/save-thread-result/blob/main/python/save_thread_result/__init__.py) in the `thread_with_result` module. This is also accessible through the python interpreter with
+For a more detailed explanation, read through the [docstrings](https://github.com/slow-but-steady/save-thread-result/blob/main/python/save_thread_result/__init__.py) in the `thread_with_result` module. This is also accessible through the python interpreter with
 ```
 python3     # MacOS/Linux
 python      # Windows
@@ -172,4 +172,4 @@ help(save_thread_result)
   <a href="https://pepy.tech/project/save-thread-result"><img alt="PePY Total Downloads" src="https://static.pepy.tech/personalized-badge/save-thread-result?period=total&units=international_system&left_color=black&right_color=yellow&left_text=PePY%20Downloads%20Total%20%28includes%20mirrors%29" width="275"></a>
 </p>
 
-If you found this interesting or useful, **please consider starring this repo** at [GitHub](https://github.com/Shail-Shouryya/save-thread-result) so other people can more easily find and use this. Thanks!
+If you found this interesting or useful, **please consider starring this repo** at [GitHub](https://github.com/slow-but-steady/save-thread-result) so other people can more easily find and use this. Thanks!
