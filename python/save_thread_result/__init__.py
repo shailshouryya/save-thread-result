@@ -16,7 +16,7 @@ __development_status__   = '4 - Beta'
 __intended_audience__    = 'Developers'
 __license__              = 'OSI Approved :: Apache License 2.0'
 __ideal_python_version__ = 'Python 3.0+'
-__source__               = 'https://github.com/slow-but-steady/save-thread-result'
+__source__               = 'https://github.com/slow-but-steady/save-thread-result/tree/main/python'
 
 
 class ThreadWithResult(threading.Thread):

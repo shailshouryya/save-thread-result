@@ -36,7 +36,7 @@ setup(
     description                   = 'Simple subclass wrapper around `threading.Thread` to get the return value from a thread in python. Exact same interface as `threading.Thread`! 🌟 Star this repo if you found it useful! 🌟',
     long_description              = long_description,
     long_description_content_type = 'text/markdown',
-    url                           = 'https://github.com/slow-but-steady/save-thread-result',
+    url                           = 'https://github.com/slow-but-steady/save-thread-result/tree/main/python',
     author                        = 'slow-but-steady',
     author_email                  = 'slowbutsteady1234@gmail.com',
     license                       = 'Apache License 2.0',
@@ -343,7 +343,7 @@ setup(
     project_urls = {
         'Bug Reports':   'https://github.com/slow-but-steady/save-thread-result/issues',
         'PyPi Funding':  'https://donate.pypi.org',
-        'Source':        'https://github.com/slow-but-steady/save-thread-result',
+        'Source':        'https://github.com/slow-but-steady/save-thread-result/tree/main/python',
         'Pull requests': 'https://github.com/slow-but-steady/save-thread-result/pulls',
         'Issues':        'https://github.com/slow-but-steady/save-thread-result/issues',
         'Code':          'https://github.com/slow-but-steady/save-thread-result/tree/main/python'
