@@ -13,7 +13,7 @@ __version__              = '0.0.8'
 
 class ThreadWithResult(threading.Thread):
     '''
-    The `threading.Thread` subclass ThreadWithResult saves the result of a thread
+    The `threading.Thread` subclass `ThreadWithResult` saves the result of a thread
     as its `result` attribute - i.e. call `thread_with_result_instance_1.result`
     after `thread_with_result_instance_1` finishes running to get the return
     value from the function that ran on that thread:
@@ -43,7 +43,7 @@ class ThreadWithResult(threading.Thread):
 
 
     OVERVIEW:
-    ThreadWithResult is a `threading.Thread` subclass used to save the
+    `ThreadWithResult` is a `threading.Thread` subclass used to save the
     result of a function called through the threading interface, since
 
     >>> thread = threading.Thread(
@@ -104,19 +104,19 @@ class ThreadWithResult(threading.Thread):
 
 
     NOTE that with release 0.0.7, you can also specify if
-    you want the ThreadWithResult instance to log when the
+    you want the `ThreadWithResult` instance to log when the
     thread starts, ends, and how long the thread takes to execute!
 
 
     If you want to mute logging this message to the terminal for all
-    ThreadWithResult instances, set the
+    `ThreadWithResult` instances, set the
     `log_thread_status` class attribute to False:
 
     >>> ThreadWithResult.log_thread_status = False
 
 
     If you only want to mute logging this message to the terminal for
-    a specific instance of ThreadWithResult, set the
+    a specific instance of `ThreadWithResult`, set the
     `log_thread_status` attribute for the specific instance to False:
 
     >>> thread_with_result_instance.log_thread_status = False
@@ -129,7 +129,7 @@ class ThreadWithResult(threading.Thread):
 
 
     If you want to log this message to an output file (or multiple output files)
-    for all ThreadWithResult instances, set the
+    for all `ThreadWithResult` instances, set the
     `log_files` class attribute to an iterable object contatining
     objects that support the .write() method:
 
@@ -137,7 +137,7 @@ class ThreadWithResult(threading.Thread):
 
 
     If you only want to log this message to an output file (or multiple output files)
-    for a specific instance of ThreadWithResult, set the
+    for a specific instance of `ThreadWithResult`, set the
     `log_files` attribute for the specific instance to an iterable
     object contatining objects that support the .write() method:
 
