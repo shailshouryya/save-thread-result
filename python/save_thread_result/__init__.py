@@ -1,8 +1,7 @@
 '''
 Simple subclass wrapper around `threading.Thread` to get the return value
 from a thread in python. Exact same interface as `threading.Thread`!
-🌟 Star this repo if you found this useful! 🌟
-https://github.com/slow-but-steady/save-thread-result
+
 '''
 import time
 import threading
@@ -10,13 +9,6 @@ from datetime import datetime
 
 
 __version__              = '0.0.8'
-__author__               = 'slow-but-steady'
-__email__                = 'slowbutsteady1234@gmail.com'
-__development_status__   = '4 - Beta'
-__intended_audience__    = 'Developers'
-__license__              = 'OSI Approved :: Apache License 2.0'
-__ideal_python_version__ = 'Python 3.0+'
-__source__               = 'https://github.com/slow-but-steady/save-thread-result/tree/main/python'
 
 
 class ThreadWithResult(threading.Thread):
@@ -169,21 +161,6 @@ class ThreadWithResult(threading.Thread):
     class attribute is set to `True`, and the `log_files`
     class attribute set to `None` - neither attributes
     exist as instance attributes by default!
-
-    For an example that uses this logging feature in a real application, see how
-    the `create_list_from()` method of the ListCreator class uses ThreadWithResult
-    at https://github.com/slow-but-steady/yt-videos-list/blob/main/python/dev/__init__.py
-
-
-
-
-    =========================================================
-    | If you found this interesting or useful,              |
-    | ** please consider starring this repo at **           |
-    | https://github.com/slow-but-steady/save-thread-result |
-    | so other people can                                   |
-    | more easily find and use this. Thanks!                |
-    =========================================================
     '''
     log_thread_status = True
     log_files         = None
