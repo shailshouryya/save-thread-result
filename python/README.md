@@ -49,6 +49,39 @@ help(ThreadWithResult)
 
 This module uses a [`threading.Thread`](https://docs.python.org/3/library/threading.html#threading.Thread) subclass `ThreadWithResult` that saves the result of a thread (from [`threading`](https://docs.python.org/3/library/threading.html) built-in module in the [Python Standard library](https://docs.python.org/3/library/index.html)) as its `result` attribute - i.e. after the thread finishes running, call `thread.result` to get the return value from the function that ran on that thread.
 
+## Examples
+
+Dummy example:
+```
+from save_thread_result import ThreadWithResult
+
+import time, random
+
+
+def function_to_thread(n):
+    count = 0
+    while count < 3:
+            print(f'Still running thread {n}...')
+            count +=1
+            time.sleep(3)
+    result = random.random()
+    print(f'Return value of thread {n} should be: {result}')
+    return result
+
+
+def main():
+    thread1 = ThreadWithResult(target=function_to_thread, args=(1,))
+    thread2 = ThreadWithResult(target=function_to_thread, args=(2,))
+    thread1.start()
+    thread2.start()
+    thread1.join()
+    thread2.join()
+    print(thread1.result)
+    print(thread2.result)
+
+main()
+```
+
 <details>
   <summary><b>More information</b></summary>
 
