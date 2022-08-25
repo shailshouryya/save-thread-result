@@ -3,6 +3,7 @@ Simple subclass wrapper around `threading.Thread` to get the return value
 from a thread in python. Exact same interface as `threading.Thread`!
 
 '''
+import sys
 import time
 import threading
 from datetime import datetime
@@ -180,6 +181,15 @@ class ThreadWithResult(threading.Thread):
                 end     = time.time()
                 message = now() + thread_name.rjust(12) + ' Finished thread! This thread took ' + str(end - start) + ' seconds to complete.'
                 self.__log(message)
+        if sys.version_info.minor >= 10:
+            # commit 98c16c991d6e70a48f4280a7cd464d807bdd9f2b in the cpython repository starts adding
+            # the function name of the `target` argument to the thread name, but since we pass the
+            # original `target` argument to the `closure_function` here and then pass `closure_function`
+            # as the new `target` argument in the super() call, the thread name (as seen by the base
+            # `threading.Thread` class) will ALWAYS be "closure_function" regardless of what function
+            # is running inside `closure_function` - to make the name more helpful, we manually overwrite
+            # the `closure_function.__name__` attribute here to include the original `target` function's name
+            closure_function.__name__ += '(' + str(target.__name__) + ')'
         super().__init__(group=group, target=closure_function, name=name, daemon=daemon)
 
     def __log(self, message):
