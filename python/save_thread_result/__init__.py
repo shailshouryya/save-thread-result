@@ -166,7 +166,7 @@ class ThreadWithResult(threading.Thread):
     log_files         = None
 
     def __init__(self, group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None):
-        def function():
+        def closure_function():
             log_condition = self.log_thread_status is True or self.log_files is not None
             if log_condition:
                 start       = time.time()
@@ -180,7 +180,7 @@ class ThreadWithResult(threading.Thread):
                 end     = time.time()
                 message = now() + thread_name.rjust(12) + ' Finished thread! This thread took ' + str(end - start) + ' seconds to complete.'
                 self.__log(message)
-        super().__init__(group=group, target=function, name=name, daemon=daemon)
+        super().__init__(group=group, target=closure_function, name=name, daemon=daemon)
 
     def __log(self, message):
         '''
