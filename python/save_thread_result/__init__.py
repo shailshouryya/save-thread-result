@@ -171,6 +171,7 @@ class ThreadWithResult(threading.Thread):
             log_condition = self.log_thread_status is True or self.log_files is not None
             if log_condition:
                 start       = time.time()
+                perf_counter_start = self.__time_perf_counter()
                 thread_name = '[' + threading.current_thread().name + ']'
                 utc_offset  = time.strftime('%z')
                 now         = lambda: datetime.now().isoformat() + utc_offset + ' '
@@ -179,7 +180,9 @@ class ThreadWithResult(threading.Thread):
             self.result = target(*args, **kwargs)
             if log_condition:
                 end     = time.time()
-                message = now() + thread_name.rjust(12) + ' Finished thread! This thread took ' + str(end - start) + ' seconds to complete.'
+                perf_counter_end = self.__time_perf_counter()
+                formatted_perf = self.__format_perf_counter_info(perf_counter_start, perf_counter_end)
+                message = now() + thread_name.rjust(12) + ' Finished thread! This thread took ' + str(end - start) + ' seconds' + formatted_perf + ' to complete.'
                 self.__log(message)
         if sys.version_info.minor >= 10:
             # commit 98c16c991d6e70a48f4280a7cd464d807bdd9f2b in the cpython repository starts adding
@@ -227,3 +230,15 @@ class ThreadWithResult(threading.Thread):
                 print('ERROR! Could not write to ' + str(self.log_files) + '. Please make sure that the log_files attribute for ' + str(self.__class__.name) + ' is an iterable object containing objects that support the .write() method. The exact error was:\n' + str(error_message))
         if self.log_thread_status is True:
             print(message)
+
+    @staticmethod
+    def __time_perf_counter():
+        if sys.version_info.minor >= 3:
+            return time.perf_counter()
+        return None
+
+    @staticmethod
+    def __format_perf_counter_info(perf_counter_start, perf_counter_end):
+        if sys.version_info.minor >= 3:
+            return ' (' + str(perf_counter_end - perf_counter_start) + ' time.perf_counter() seconds)'
+        return ''
