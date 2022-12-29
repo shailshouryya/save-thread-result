@@ -170,19 +170,19 @@ class ThreadWithResult(threading.Thread):
         def closure_function():
             log_condition = self.log_thread_status is True or self.log_files is not None
             if log_condition:
-                time_start       = time.time()
+                time_start         = time.time()
                 perf_counter_start = self.__time_perf_counter()
-                thread_name = '[' + threading.current_thread().name + ']'
-                utc_offset  = time.strftime('%z')
-                now         = lambda: datetime.now().isoformat() + utc_offset + ' '
-                message     = now() + thread_name.rjust(12) + ' Starting thread...'
+                thread_name        = '[' + threading.current_thread().name + ']'
+                utc_offset         = time.strftime('%z')
+                now                = lambda: datetime.now().isoformat() + utc_offset + ' '
+                message            = now() + thread_name.rjust(12) + ' Starting thread...'
                 self.__log(message)
             self.result = target(*args, **kwargs)
             if log_condition:
-                time_end     = time.time()
+                time_end         = time.time()
                 perf_counter_end = self.__time_perf_counter()
-                formatted_perf = self.__format_perf_counter_info(perf_counter_start, perf_counter_end)
-                message = now() + thread_name.rjust(12) + ' Finished thread! This thread took ' + str(time_end - time_start) + ' seconds' + formatted_perf + ' to complete.'
+                formatted_perf   = self.__format_perf_counter_info(perf_counter_start, perf_counter_end)
+                message          = now() + thread_name.rjust(12) + ' Finished thread! This thread took ' + str(time_end - time_start) + ' seconds' + formatted_perf + ' to complete.'
                 self.__log(message)
         if sys.version_info.minor >= 10:
             # commit 98c16c991d6e70a48f4280a7cd464d807bdd9f2b in the cpython repository starts adding
