@@ -184,7 +184,7 @@ class ThreadWithResult(threading.Thread):
                 formatted_perf   = self.__format_perf_counter_info(perf_counter_start, perf_counter_end)
                 message          = now() + thread_name.rjust(12) + ' Finished thread! This thread took ' + str(time_end - time_start) + ' time.time() seconds' + formatted_perf + ' to complete.'
                 self.__log(message)
-        if sys.version_info.minor >= 10:
+        if sys.version_info.major == 3 and sys.version_info.minor >= 10:
             # commit 98c16c991d6e70a48f4280a7cd464d807bdd9f2b in the cpython repository starts adding
             # the function name of the `target` argument to the thread name:
             #     *name* is the thread name. By default, a unique name is constructed
@@ -243,14 +243,16 @@ class ThreadWithResult(threading.Thread):
         if self.log_thread_status is True:
             print(message)
 
+
+    # use helper functions for time.perf_counter() since function became available only after python release 3.3
     @staticmethod
     def __time_perf_counter():
-        if sys.version_info.minor >= 3:
+        if sys.version_info.major == 3 and sys.version_info.minor >= 3:
             return time.perf_counter()
         return None
 
     @staticmethod
     def __format_perf_counter_info(perf_counter_start, perf_counter_end):
-        if sys.version_info.minor >= 3:
+        if sys.version_info.major == 3 and sys.version_info.minor >= 3:
             return ' (' + str(perf_counter_end - perf_counter_start) + ' time.perf_counter() seconds)'
         return ''
