@@ -204,7 +204,7 @@ class ThreadWithResult(threading.Thread):
             #     - https://github.com/python/cpython/pull/22357
             #     - https://github.com/python/cpython/issues/85999
             #     - https://bugs.python.org/issue41833
-            closure_function.__name__ += '(' + str(target.__name__) + ')'
+            closure_function.__name__ = self.__class__.__name__ + '.' + 'closure_function' + '(' + str(target.__name__) + ')'
         super().__init__(group=group, target=closure_function, name=name, daemon=daemon)
 
     def __log(self, message):
