@@ -186,12 +186,24 @@ class ThreadWithResult(threading.Thread):
                 self.__log(message)
         if sys.version_info.minor >= 10:
             # commit 98c16c991d6e70a48f4280a7cd464d807bdd9f2b in the cpython repository starts adding
-            # the function name of the `target` argument to the thread name, but since we pass the
+            # the function name of the `target` argument to the thread name:
+            #     *name* is the thread name. By default, a unique name is constructed
+            #     of the form "Thread-*N*" where *N* is a small decimal number,
+            #     or "Thread-*N* (target)" where "target" is ``target.__name__`` if the
+            #     *target* argument is specified BUT the *name* argument is omitted.
+            # HOWEVER, since we pass the
             # original `target` argument to the `closure_function` here and then pass `closure_function`
-            # as the new `target` argument in the super() call, the thread name (as seen by the base
+            # as the new `target` argument in the `super()` call, the thread name (as seen by the base
             # `threading.Thread` class) will ALWAYS be "closure_function" regardless of what function
             # is running inside `closure_function` - to make the name more helpful, we manually overwrite
             # the `closure_function.__name__` attribute here to include the original `target` function's name
+            #   - see the following for more information:
+            #     - https://github.com/python/cpython/issues/85999
+            #     - https://github.com/python/cpython/issues/59705
+            #     - https://github.com/python/cpython/issues/85905
+            #     - https://github.com/python/cpython/pull/22357
+            #     - https://github.com/python/cpython/issues/85999
+            #     - https://bugs.python.org/issue41833
             closure_function.__name__ += '(' + str(target.__name__) + ')'
         super().__init__(group=group, target=closure_function, name=name, daemon=daemon)
 
