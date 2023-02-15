@@ -176,14 +176,14 @@ class ThreadWithResult(threading.Thread):
                 utc_offset         = time.strftime('%z')
                 now                = lambda: datetime.now().isoformat() + utc_offset + ' '
                 message            = now() + thread_name.rjust(12) + ' Starting thread...'
-                self.__log(message)
+                _log(self, message)
             self.result = target(*args, **kwargs)
             if log_condition:
                 time_end         = time.time()
                 perf_counter_end = _time_perf_counter()
                 formatted_perf   = _format_perf_counter_info(perf_counter_start, perf_counter_end)
                 message          = now() + thread_name.rjust(12) + ' Finished thread! This thread took ' + str(time_end - time_start) + ' time.time() seconds' + formatted_perf + ' to complete.'
-                self.__log(message)
+                _log(self, message)
         if sys.version_info.major == 3 and sys.version_info.minor >= 10:
             # commit 98c16c991d6e70a48f4280a7cd464d807bdd9f2b in the cpython repository starts adding
             # the function name of the `target` argument to the thread name:
@@ -208,41 +208,41 @@ class ThreadWithResult(threading.Thread):
                 closure_function.__name__ = self.__class__.__name__ + '.' + 'closure_function' + '(' + str(target.__name__) + ')'
         super().__init__(group=group, target=closure_function, name=name, daemon=daemon)
 
-    def __log(self, message):
-        '''
-        Helper function to print when the thread
-        starts, ends, and how long the thread takes to execute.
+def _log(thread_with_result_instance, message):
+    '''
+    Helper function to print when the thread
+    starts, ends, and how long the thread takes to execute.
 
-        This function runs and prints the thread information to the
-        terminal when any of the following statements are true:
-          * the instance attribute `log_thread_status` is `True`
-          * the instance attribute `log_thread_status` is unset but
-               the class attribute `log_thread_status` is `True`
-          * the instance attribute `log_files` is
-            an iterable object containing objects that support the .write() method
-          * the instance attribute `log_files` is unset but
-               the class attribute is an iterable object containing objects that support the .write() method
+    This function runs and prints the thread information to the
+    terminal when any of the following statements are true:
+        * the instance attribute `log_thread_status` is `True`
+        * the instance attribute `log_thread_status` is unset but
+            the class attribute `log_thread_status` is `True`
+        * the instance attribute `log_files` is
+        an iterable object containing objects that support the .write() method
+        * the instance attribute `log_files` is unset but
+            the class attribute is an iterable object containing objects that support the .write() method
 
-        This function also logs the information to every location in
-        `log_files` in addition to printing the thread information
-        to the terminal if the instance or class attribute `log_files` is an
-        iterable object containing objects that support the .write() method.
-        '''
-        if self.log_files is not None:
-            try:
-                for file in self.log_files:
-                    try:
-                        file.write(message + '\n')
-                    except AttributeError as error_message:
-                        # example exception:
-                        # AttributeError: 'str' object has no attribute 'write'
-                        print('ERROR! Could not write to ' + str(file) + '. Please make sure that every object in ' + str(self.log_files) + ' supports the .write() method. The exact error was:\n' + str(error_message))
-            except TypeError as error_message:
-                # example exception:
-                # TypeError: 'int' object is not iterable
-                print('ERROR! Could not write to ' + str(self.log_files) + '. Please make sure that the log_files attribute for ' + str(self.__class__.name) + ' is an iterable object containing objects that support the .write() method. The exact error was:\n' + str(error_message))
-        if self.log_thread_status is True:
-            print(message)
+    This function also logs the information to every location in
+    `log_files` in addition to printing the thread information
+    to the terminal if the instance or class attribute `log_files` is an
+    iterable object containing objects that support the .write() method.
+    '''
+    if thread_with_result_instance.log_files is not None:
+        try:
+            for file in thread_with_result_instance.log_files:
+                try:
+                    file.write(message + '\n')
+                except AttributeError as error_message:
+                    # example exception:
+                    # AttributeError: 'str' object has no attribute 'write'
+                    print('ERROR! Could not write to ' + str(file) + '. Please make sure that every object in ' + str(thread_with_result_instance.log_files) + ' supports the .write() method. The exact error was:\n' + str(error_message))
+        except TypeError as error_message:
+            # example exception:
+            # TypeError: 'int' object is not iterable
+            print('ERROR! Could not write to ' + str(thread_with_result_instance.log_files) + '. Please make sure that the log_files attribute for ' + str(thread_with_result_instance.__class__.name) + ' is an iterable object containing objects that support the .write() method. The exact error was:\n' + str(error_message))
+    if thread_with_result_instance.log_thread_status is True:
+        print(message)
 
 
 # use helper functions for time.perf_counter() since function became available only after python release 3.3
