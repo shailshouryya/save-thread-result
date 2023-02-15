@@ -75,34 +75,6 @@ _general_documentation = '''
 
 
 
-    EXPLANATION:
-    We create a closure function to run the actual function we want
-    to run on a separate thread, enclose the function passed to
-    `target` - along with the arguments provided to `args` and `kwargs` -
-    inside the closure function, and pass the CLOSURE FUNCTION
-    as the function to the `target` argument in the
-    `super.__init__()` call to `threading.Thread`:
-    super().__init__(group=group, target=closure_function, name=name, daemon=daemon)
-
-    Since the function we want to run on a separate thread is no longer
-    the function passed directly to `threading.Thread` (remember,
-    we pass the closure function instead!), we save the result of
-    the enclosed function to the `self.result` attribute of the
-    instance.
-
-    We use inheritance to initialize this instance with the
-    closure function as the `target` function and no arguments
-    for `args` or `kwargs` (since we pass
-    the `args` and `kwargs` arguments to the original
-    `target` function INSIDE the closure function).
-
-    All other attributes (`group`, `name`, and `daemon`)
-    are initialized in the parent `threading.Thread` class
-    during the `super().__init__()` call.
-
-
-
-
     NOTE that with release 0.0.7, you can also specify if
     you want the `ThreadWithResult` instance to log when the
     thread starts, ends, and how long the thread takes to execute!
@@ -161,13 +133,41 @@ _general_documentation = '''
     class attribute is set to `True`, and the `log_files`
     class attribute set to `None` - neither attributes
     exist as instance attributes by default!
+
+    '''
+
+_closure___init___implementation_documentation = '''
+    IMPLEMENTATION EXPLANATION:
+    We create a closure function to run the actual function we want
+    to run on a separate thread, enclose the function passed to
+    `target` - along with the arguments provided to `args` and `kwargs` -
+    inside the closure function, and pass the CLOSURE FUNCTION
+    as the function to the `target` argument in the
+    `super.__init__()` call to `threading.Thread`:
+    super().__init__(group=group, target=closure_function, name=name, daemon=daemon)
+
+    Since the function we want to run on a separate thread is no longer
+    the function passed directly to `threading.Thread` (remember,
+    we pass the closure function instead!), we save the result of
+    the enclosed function to the `self.result` attribute of the
+    instance.
+
+    We use inheritance to initialize this instance with the
+    closure function as the `target` function and no arguments
+    for `args` or `kwargs` (since we pass
+    the `args` and `kwargs` arguments to the original
+    `target` function INSIDE the closure function).
+
+    All other attributes (`group`, `name`, and `daemon`)
+    are initialized in the parent `threading.Thread` class
+    during the `super().__init__()` call.
     '''
 
 
 
 
 class ThreadWithResult(threading.Thread):
-    __doc__ = _general_documentation
+    __doc__ = _general_documentation + _closure___init___implementation_documentation
 
     log_thread_status = True
     log_files         = None
