@@ -138,8 +138,8 @@ _general_documentation = '''
 
 _closure___init___implementation_documentation = '''
     IMPLEMENTATION EXPLANATION:
-    We create a closure function to run the actual function we want
-    to run on a separate thread, enclose the function passed to
+    We create a closure function inside the __init__ method to run the
+    actual function we want to run on a separate thread, enclose the function passed to
     `target` - along with the arguments provided to `args` and `kwargs` -
     inside the closure function, and pass the CLOSURE FUNCTION
     as the function to the `target` argument in the
