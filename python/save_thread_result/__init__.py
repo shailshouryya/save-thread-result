@@ -227,6 +227,17 @@ def _measure_time():
     current_perf_counter = _time_perf_counter()
     return current_time, current_perf_counter
 
+# use helper function for time.perf_counter() since function became available only after python release 3.3
+def _time_perf_counter():
+    if sys.version_info.major == 3 and sys.version_info.minor >= 3:
+        return time.perf_counter()
+    return None
+
+def _format_perf_counter_info(perf_counter_start, perf_counter_end):
+    if sys.version_info.major == 3 and sys.version_info.minor >= 3:
+        return ' (' + str(perf_counter_end - perf_counter_start) + ' time.perf_counter() seconds)'
+    return ''
+
 def format_thread_name():
     thread_name        = '[' + threading.current_thread().name + ']'
     return thread_name.rjust(12)
@@ -273,15 +284,3 @@ def _log(thread_with_result_instance, message):
             print('ERROR! Could not write to ' + str(thread_with_result_instance.log_files) + '. Please make sure that the log_files attribute for ' + str(thread_with_result_instance.__class__.name) + ' is an iterable object containing objects that support the .write() method. The exact error was:\n' + str(error_message))
     if thread_with_result_instance.log_thread_status is True:
         print(message)
-
-
-# use helper functions for time.perf_counter() since function became available only after python release 3.3
-def _time_perf_counter():
-    if sys.version_info.major == 3 and sys.version_info.minor >= 3:
-        return time.perf_counter()
-    return None
-
-def _format_perf_counter_info(perf_counter_start, perf_counter_end):
-    if sys.version_info.major == 3 and sys.version_info.minor >= 3:
-        return ' (' + str(perf_counter_end - perf_counter_start) + ' time.perf_counter() seconds)'
-    return ''
