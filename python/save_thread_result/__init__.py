@@ -12,8 +12,7 @@ from datetime import datetime
 __version__              = '0.1.0'
 
 
-class ThreadWithResult(threading.Thread):
-    '''
+_general_documentation = '''
     The `threading.Thread` subclass `ThreadWithResult` saves the result of a thread
     as its `result` attribute - i.e. call `thread_with_result_instance_1.result`
     after `thread_with_result_instance_1` finishes running to get the return
@@ -163,6 +162,11 @@ class ThreadWithResult(threading.Thread):
     class attribute set to `None` - neither attributes
     exist as instance attributes by default!
     '''
+
+
+
+
+class ThreadWithResult(threading.Thread):
     log_thread_status = True
     log_files         = None
 
