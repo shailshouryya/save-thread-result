@@ -171,7 +171,7 @@ class ThreadWithResult(threading.Thread):
             log_condition = self.log_thread_status is True or self.log_files is not None
             if log_condition:
                 time_start         = time.time()
-                perf_counter_start = self.__time_perf_counter()
+                perf_counter_start = _time_perf_counter()
                 thread_name        = '[' + threading.current_thread().name + ']'
                 utc_offset         = time.strftime('%z')
                 now                = lambda: datetime.now().isoformat() + utc_offset + ' '
@@ -180,8 +180,8 @@ class ThreadWithResult(threading.Thread):
             self.result = target(*args, **kwargs)
             if log_condition:
                 time_end         = time.time()
-                perf_counter_end = self.__time_perf_counter()
-                formatted_perf   = self.__format_perf_counter_info(perf_counter_start, perf_counter_end)
+                perf_counter_end = _time_perf_counter()
+                formatted_perf   = _format_perf_counter_info(perf_counter_start, perf_counter_end)
                 message          = now() + thread_name.rjust(12) + ' Finished thread! This thread took ' + str(time_end - time_start) + ' time.time() seconds' + formatted_perf + ' to complete.'
                 self.__log(message)
         if sys.version_info.major == 3 and sys.version_info.minor >= 10:
@@ -245,15 +245,13 @@ class ThreadWithResult(threading.Thread):
             print(message)
 
 
-    # use helper functions for time.perf_counter() since function became available only after python release 3.3
-    @staticmethod
-    def __time_perf_counter():
-        if sys.version_info.major == 3 and sys.version_info.minor >= 3:
-            return time.perf_counter()
-        return None
+# use helper functions for time.perf_counter() since function became available only after python release 3.3
+def _time_perf_counter():
+    if sys.version_info.major == 3 and sys.version_info.minor >= 3:
+        return time.perf_counter()
+    return None
 
-    @staticmethod
-    def __format_perf_counter_info(perf_counter_start, perf_counter_end):
-        if sys.version_info.major == 3 and sys.version_info.minor >= 3:
-            return ' (' + str(perf_counter_end - perf_counter_start) + ' time.perf_counter() seconds)'
-        return ''
+def _format_perf_counter_info(perf_counter_start, perf_counter_end):
+    if sys.version_info.major == 3 and sys.version_info.minor >= 3:
+        return ' (' + str(perf_counter_end - perf_counter_start) + ' time.perf_counter() seconds)'
+    return ''
