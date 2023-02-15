@@ -227,7 +227,7 @@ def _measure_time():
     current_perf_counter = _time_perf_counter()
     return current_time, current_perf_counter
 
-# use helper function for time.perf_counter() since function became available only after python release 3.3
+# use helper function to check if time.perf_counter() can be called since function became available only after python release 3.3
 def _time_perf_counter():
     if sys.version_info.major == 3 and sys.version_info.minor >= 3:
         return time.perf_counter()
