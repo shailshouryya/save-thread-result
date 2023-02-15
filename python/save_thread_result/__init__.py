@@ -176,20 +176,10 @@ class ThreadWithResult(threading.Thread):
         def closure_function():
             log_condition = self.log_thread_status is True or self.log_files is not None
             if log_condition:
-                time_start         = time.time()
-                perf_counter_start = _time_perf_counter()
-                thread_name        = '[' + threading.current_thread().name + ']'
-                utc_offset         = time.strftime('%z')
-                now                = lambda: datetime.now().isoformat() + utc_offset + ' '
-                message            = now() + thread_name.rjust(12) + ' Starting thread...'
-                _log(self, message)
+                time_time_start, perf_counter_start = _log_start_of_thread(self)
             self.result = target(*args, **kwargs)
             if log_condition:
-                time_end         = time.time()
-                perf_counter_end = _time_perf_counter()
-                formatted_perf   = _format_perf_counter_info(perf_counter_start, perf_counter_end)
-                message          = now() + thread_name.rjust(12) + ' Finished thread! This thread took ' + str(time_end - time_start) + ' time.time() seconds' + formatted_perf + ' to complete.'
-                _log(self, message)
+                _log_end_of_thread(self, time_time_start, perf_counter_start)
         if sys.version_info.major == 3 and sys.version_info.minor >= 10:
             # commit 98c16c991d6e70a48f4280a7cd464d807bdd9f2b in the cpython repository starts adding
             # the function name of the `target` argument to the thread name:
@@ -213,6 +203,40 @@ class ThreadWithResult(threading.Thread):
             if name is None and target is not None:
                 closure_function.__name__ = self.__class__.__name__ + '.' + 'closure_function' + '(' + str(target.__name__) + ')'
         super().__init__(group=group, target=closure_function, name=name, daemon=daemon)
+
+
+def _log_start_of_thread(thread_with_result_instance):
+    time_time_start, perf_counter_start = _measure_time()
+    thread_name                         = format_thread_name()
+    formatted_datetime_with_offset      = format_datetime_for_message()
+    message                             = formatted_datetime_with_offset + thread_name + ' Starting thread...'
+    _log(thread_with_result_instance, message)
+    return time_time_start, perf_counter_start
+
+def _log_end_of_thread(thread_with_result_instance, time_time_start, perf_counter_start):
+    time_time_end, perf_counter_end     = _measure_time()
+    thread_name                         = format_thread_name()
+    formatted_time_time                 = str(time_time_end - time_time_start) + ' time.time() seconds'
+    formatted_time_perf_counter         = _format_perf_counter_info(perf_counter_start, perf_counter_end)
+    formatted_datetime_with_offset      = format_datetime_for_message()
+    message                             = formatted_datetime_with_offset + thread_name + ' Finished thread! This thread took ' + formatted_time_time + formatted_time_perf_counter + ' to complete.'
+    _log(thread_with_result_instance, message)
+
+def _measure_time():
+    current_time         = time.time()
+    current_perf_counter = _time_perf_counter()
+    return current_time, current_perf_counter
+
+def format_thread_name():
+    thread_name        = '[' + threading.current_thread().name + ']'
+    return thread_name.rjust(12)
+
+def format_datetime_for_message():
+    utc_offset                     = time.strftime('%z')
+    formatted_datetime_with_offset = datetime.now().isoformat() + utc_offset + ' '
+    return formatted_datetime_with_offset
+
+
 
 def _log(thread_with_result_instance, message):
     '''
