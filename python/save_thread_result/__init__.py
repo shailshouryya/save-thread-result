@@ -166,6 +166,22 @@ _closure___init___implementation_documentation = '''
 
 
 
+class runOverrideThreadWithResult(threading.Thread):
+    def run(self):
+        # uses the try/finally blocks for consistency with the CPython implementation:
+        # https://github.com/python/cpython/blob/89ac665891dec1988bedec2ce9b2c4d016502a49/Lib/threading.py#L987
+        try:
+            if self._target is not None:
+                self.result = self._target(*self._args, **self._kwargs)
+        finally:
+            # Avoid a refcycle if the thread is running a function with
+            # an argument that has a member that points to the thread.
+            del self._target, self._args, self._kwargs
+
+
+
+
+
 class ThreadWithResult(threading.Thread):
     __doc__ = _general_documentation + _closure___init___implementation_documentation
 
