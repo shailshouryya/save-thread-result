@@ -171,6 +171,16 @@ class _runOverrideThreadWithResult(threading.Thread):
     log_files         = None
 
     def run(self):
+        '''
+        Method representing the thread's activity that is overriden to
+        save the result of a thread (if the thread completes) in the
+        `result` attribute of the instance.
+
+        This is the only change to the functionality of the `run` method.
+        This method still invokes the callable object passed to the object's constructor as the
+        target argument, if any, with sequential and keyword arguments taken
+        from the `args` and `kwargs` arguments, respectively.
+        '''
         # uses the try/finally blocks for consistency with the CPython implementation:
         # https://github.com/python/cpython/blob/89ac665891dec1988bedec2ce9b2c4d016502a49/Lib/threading.py#L987
         log_condition = self.log_thread_status is True or self.log_files is not None
