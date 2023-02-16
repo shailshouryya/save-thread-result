@@ -166,7 +166,7 @@ _closure___init___implementation_documentation = '''
 
 
 
-class runOverrideThreadWithResult(threading.Thread):
+class _runOverrideThreadWithResult(threading.Thread):
     log_thread_status = True
     log_files         = None
 
@@ -188,7 +188,7 @@ class runOverrideThreadWithResult(threading.Thread):
 
 
 
-class __init__OverrideThreadWithResult(threading.Thread):
+class ___init__OverrideThreadWithResult(threading.Thread):
     __doc__ = _general_documentation + _closure___init___implementation_documentation
 
     log_thread_status = True
