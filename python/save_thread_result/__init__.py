@@ -314,3 +314,23 @@ def _log(thread_with_result_instance, message):
             print('ERROR! Could not write to ' + str(thread_with_result_instance.log_files) + '. Please make sure that the log_files attribute for ' + str(thread_with_result_instance.__class__.name) + ' is an iterable object containing objects that support the .write() method. The exact error was:\n' + str(error_message))
     if thread_with_result_instance.log_thread_status is True:
         print(message)
+
+
+
+
+
+
+ThreadWithResult = _runOverrideThreadWithResult
+
+# without the `_runOverrideThreadWithResult` assignment to `ThreadWithResult`:
+#   any existing code already using this module trying to use the new changes in release 0.1.1
+#   would require updating all references to `ThreadWithResult` to either
+#   `_runOverrideThreadWithResult` or `___init__OverrideThreadWithResult`
+# binding `ThreadWithResult` to `_runOverrideThreadWithResult` avoids this problem
+# `ThreadWithResult` can also be bound to `___init__OverrideThreadWithResult` but
+#    `_runOverrideThreadWithResult` is the chosen default since
+#    the threading.Thread class does additional work in the __init__ method,
+#    such as attribute modifications (https://github.com/python/cpython/blob/89ac665891dec1988bedec2ce9b2c4d016502a49/Lib/threading.py#L892)
+#    and private attribute additions (https://github.com/python/cpython/blob/89ac665891dec1988bedec2ce9b2c4d016502a49/Lib/threading.py#L905)
+#    that `___init__OverrideThreadWithResult` does not currently do, and therefore
+#    using `___init__OverrideThreadWithResult` might cause difficult-to-debug bugs
