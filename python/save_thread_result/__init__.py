@@ -167,12 +167,20 @@ _closure___init___implementation_documentation = '''
 
 
 class runOverrideThreadWithResult(threading.Thread):
+    log_thread_status = True
+    log_files         = None
+
     def run(self):
         # uses the try/finally blocks for consistency with the CPython implementation:
         # https://github.com/python/cpython/blob/89ac665891dec1988bedec2ce9b2c4d016502a49/Lib/threading.py#L987
+        log_condition = self.log_thread_status is True or self.log_files is not None
         try:
             if self._target is not None:
+                if log_condition:
+                    time_time_start, perf_counter_start = _log_start_of_thread(self)
                 self.result = self._target(*self._args, **self._kwargs)
+                if log_condition:
+                    _log_end_of_thread(self, time_time_start, perf_counter_start)
         finally:
             # Avoid a refcycle if the thread is running a function with
             # an argument that has a member that points to the thread.
