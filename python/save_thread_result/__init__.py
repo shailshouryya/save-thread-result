@@ -188,7 +188,7 @@ class runOverrideThreadWithResult(threading.Thread):
 
 
 
-class ThreadWithResult(threading.Thread):
+class __init__OverrideThreadWithResult(threading.Thread):
     __doc__ = _general_documentation + _closure___init___implementation_documentation
 
     log_thread_status = True
