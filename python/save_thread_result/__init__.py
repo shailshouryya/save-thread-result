@@ -176,11 +176,9 @@ class runOverrideThreadWithResult(threading.Thread):
         log_condition = self.log_thread_status is True or self.log_files is not None
         try:
             if self._target is not None:
-                if log_condition:
-                    time_time_start, perf_counter_start = _log_start_of_thread(self)
-                self.result = self._target(*self._args, **self._kwargs)
-                if log_condition:
-                    _log_end_of_thread(self, time_time_start, perf_counter_start)
+                if log_condition: time_time_start, perf_counter_start = _log_start_of_thread(self)
+                self.result                                           = self._target(*self._args, **self._kwargs)
+                if log_condition: _                                   = _log_end_of_thread(self, time_time_start, perf_counter_start)
         finally:
             # Avoid a refcycle if the thread is running a function with
             # an argument that has a member that points to the thread.
@@ -199,11 +197,9 @@ class ThreadWithResult(threading.Thread):
     def __init__(self, group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None):
         def closure_function():
             log_condition = self.log_thread_status is True or self.log_files is not None
-            if log_condition:
-                time_time_start, perf_counter_start = _log_start_of_thread(self)
-            self.result = target(*args, **kwargs)
-            if log_condition:
-                _log_end_of_thread(self, time_time_start, perf_counter_start)
+            if log_condition: time_time_start, perf_counter_start = _log_start_of_thread(self)
+            self.result                                           = target(*args, **kwargs)
+            if log_condition: _                                   = _log_end_of_thread(self, time_time_start, perf_counter_start)
         if sys.version_info.major == 3 and sys.version_info.minor >= 10:
             # commit 98c16c991d6e70a48f4280a7cd464d807bdd9f2b in the cpython repository starts adding
             # the function name of the `target` argument to the thread name:
