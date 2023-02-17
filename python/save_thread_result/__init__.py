@@ -140,6 +140,8 @@ _general_documentation = '''
 
 
 class _runOverrideThreadWithResult(threading.Thread):
+    __doc__ = _general_documentation
+
     log_thread_status = True
     log_files         = None
 
