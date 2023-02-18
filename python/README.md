@@ -55,17 +55,17 @@ Dummy example:
 ```
 from save_thread_result import ThreadWithResult
 
-import time, random
+import time, random, threading
 
 
 def function_to_thread(n):
     count = 0
     while count < 3:
-            print(f'Still running thread {n}...')
+            print(f'Still running {threading.current_thread().name}...')
             count +=1
             time.sleep(3)
     result = random.random()
-    print(f'Return value of thread {n} should be: {result}')
+    print(f'Return value of {threading.current_thread().name} should be: {result}')
     return result
 
 
@@ -76,8 +76,8 @@ def main():
     thread2.start()
     thread1.join()
     thread2.join()
-    print(thread1.result)
-    print(thread2.result)
+    print(f'The `result` attribute of {thread1.name} is: {thread1.result}')
+    print(f'The `result` attribute of {thread2.name} is: {thread2.result}')
 
 main()
 ```
