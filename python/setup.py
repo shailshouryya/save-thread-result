@@ -39,6 +39,7 @@ setup(
     url                           = 'https://github.com/slow-but-steady/save-thread-result/tree/main/python',
     author                        = 'slow-but-steady',
     author_email                  = 'slowbutsteady1234@gmail.com',
+    license                       = 'MIT License',
 
 
     classifiers=[
@@ -80,6 +81,12 @@ setup(
         'Intended Audience :: Science/Research',
         'Intended Audience :: System Administrators',
         'Intended Audience :: Telecommunications Industry',
+        'License :: Free For Educational Use',
+        'License :: Free For Home Use',
+        'License :: Free for non-commercial use',
+        'License :: Freely Distributable',
+        'License :: Freeware',
+        'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Operating System :: Android',
         'Operating System :: BeOS',
