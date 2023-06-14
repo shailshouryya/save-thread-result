@@ -33,7 +33,7 @@ import threading
 from datetime import datetime
 
 
-__version__              = '0.1.1'
+__version__              = '0.1.1.post0'
 
 
 _general_documentation = '''
