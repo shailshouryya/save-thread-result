@@ -319,7 +319,7 @@ setup(
     # package_dir={'':'src'},
 
 
-    python_requires  = '>3.0, <4',
+    python_requires  = '>=3, <4',
     install_requires = [],  # Optional
     # https://packaging.python.org/discussions/install-requires-vs-requirements/
 
