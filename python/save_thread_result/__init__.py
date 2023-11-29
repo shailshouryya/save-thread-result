@@ -284,20 +284,22 @@ def _measure_time():
 
 # use helper function to check if time.perf_counter() can be called since function became available only after python release 3.3
 def _time_perf_counter():
-    sys_version_info = sys.version_info
-    sys_version_info_major = sys_version_info[0]
-    sys_version_info_minor = sys_version_info[1]
+    sys_version_info_major, sys_version_info_minor = _get_major_minor_sys_version_info()
     if sys_version_info_major == 3 and sys_version_info_minor >= 3:
         return time.perf_counter()
     return None
 
 def _format_perf_counter_info(perf_counter_start, perf_counter_end):
-    sys_version_info = sys.version_info
-    sys_version_info_major = sys_version_info[0]
-    sys_version_info_minor = sys_version_info[1]
+    sys_version_info_major, sys_version_info_minor = _get_major_minor_sys_version_info()
     if sys_version_info_major == 3 and sys_version_info_minor >= 3:
         return ' (' + str(perf_counter_end - perf_counter_start) + ' time.perf_counter() seconds)'
     return ''
+
+def _get_major_minor_sys_version_info():
+    sys_version_info = sys.version_info
+    sys_version_info_major = sys_version_info[0]
+    sys_version_info_minor = sys_version_info[1]
+    return (sys_version_info_major, sys_version_info_minor)
 
 def format_thread_name():
     thread_name        = '[' + threading.current_thread().name + ']'
