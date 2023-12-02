@@ -1,0 +1,13 @@
+FROM debian:bullseye-20231120-slim
+
+# https://stackoverflow.com/questions/19816275/no-acceptable-c-compiler-found-in-path-when-installing-python
+# install build-essential to fix
+# no acceptable C compiler found in $PATH
+RUN apt-get -y update; apt-get install curl build-essential -y # -y needs to be AFTER all packages to install
+
+RUN curl -SL https://www.python.org/ftp/python/3.1.1/Python-3.1.1.tgz | tar -xzvf - \
+    && cd Python-3.1.1 && ./configure && make && make install
+
+COPY python/ ./python
+
+CMD ["python3.1", "python/dummy_example.py"]
