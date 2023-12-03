@@ -314,7 +314,7 @@ setup(
 
     # http://code.nabla.net/doc/setuptools/api/setuptools/setuptools.find_packages.html
     # https://stackoverflow.com/questions/51286928/what-is-where-argument-for-in-setuptools-find-packages
-    packages=find_packages(exclude=['*dev*']),
+    packages=find_packages(exclude=['*dev*', '*tests*']),
     # packages=find_namespace_packages(include=['ship']),
     # package_dir={'':'src'},
 
