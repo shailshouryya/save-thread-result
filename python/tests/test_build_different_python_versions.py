@@ -40,7 +40,7 @@ def write_dockerfile(
 def build_docker_image(
     python_version: str,
 ) -> None:
-    pass
+    os.system(f'docker build --tag save_thread_result-{python_version} --file Dockerfile_python{python_version} .')
 
 
 if __name__ == '__main__':
