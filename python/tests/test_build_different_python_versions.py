@@ -19,7 +19,19 @@ from typing import (
 def main():
     dockerfile_template = read_file(['.', 'Dockerfile_template'])
     versions = [
+        '3.0.1',
         '3.1.1',
+        '3.2.6',
+        '3.3.7',
+        '3.4.10',
+        '3.5.10',
+        '3.6.15',
+        '3.7.17',
+        '3.8.18',
+        '3.9.18',
+        '3.10.13',
+        '3.11.6',
+        '3.12.0',
     ]
     for version in versions:
         write_dockerfile(dockerfile_template, version)
