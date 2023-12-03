@@ -8,6 +8,6 @@ RUN apt-get -y update; apt-get install curl build-essential -y # -y needs to be 
 RUN curl -SL https://www.python.org/ftp/python/{FULL_VERSION}/Python-{FULL_VERSION}.tgz | tar -xzvf - \
     && cd Python-{FULL_VERSION} && ./configure && make && make install
 
-COPY .. ./save_thread_result/python
+COPY . ./save_thread_result/python
 
 CMD ["python{MAJOR_MINOR}", "save_thread_result/python/dummy_example.py"]

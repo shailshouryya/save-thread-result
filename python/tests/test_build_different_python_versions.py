@@ -2,6 +2,12 @@
 This module tests if the save_thread_result package can be
 successfully built on different python versions in a
 Docker image.
+
+NOTE: this module MUST be called from inside
+save_thread_result.python
+and NOT from inside
+save_thread_result.python.tests
+for the Docker image to build correctly.
 '''
 
 import os
