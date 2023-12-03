@@ -13,6 +13,7 @@ from typing import (
 def main():
     dockerfile_template = read_file(['.', 'Dockerfile_template'])
     versions = [
+        '3.1.1',
     ]
     for version in versions:
         write_dockerfile(dockerfile_template, version)
@@ -31,7 +32,10 @@ def write_dockerfile(
     dockerfile_template: str,
     python_version: str,
 ) -> None:
-    pass
+    formatted_dockerfile_location = os.path.join('.', f'Dockerfile_python{python_version}')
+    major_minor                   = '.'.join(python_version.split('.')[:-1:])
+    with open(file=formatted_dockerfile_location, mode='w', buffering=-1, encoding='utf-8', newline=None) as file:
+        file.write(dockerfile_template.format(FULL_VERSION=python_version, MAJOR_MINOR=major_minor))
 
 def build_docker_image(
     python_version: str,

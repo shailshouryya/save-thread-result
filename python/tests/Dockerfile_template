@@ -5,9 +5,9 @@ FROM debian:bullseye-20231120-slim
 # no acceptable C compiler found in $PATH
 RUN apt-get -y update; apt-get install curl build-essential -y # -y needs to be AFTER all packages to install
 
-RUN curl -SL https://www.python.org/ftp/python/3.1.1/Python-3.1.1.tgz | tar -xzvf - \
-    && cd Python-3.1.1 && ./configure && make && make install
+RUN curl -SL https://www.python.org/ftp/python/{FULL_VERSION}/Python-{FULL_VERSION}.tgz | tar -xzvf - \
+    && cd Python-{FULL_VERSION} && ./configure && make && make install
 
 COPY python/ ./python
 
-CMD ["python3.1", "python/dummy_example.py"]
+CMD ["python{MAJOR_MINOR}", "python/dummy_example.py"]
