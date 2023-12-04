@@ -17,7 +17,7 @@ from typing import (
 )
 
 def main():
-    dockerfile_template = read_file(['.', 'tests', 'Dockerfile_template'])
+    dockerfile_template = read_file(['.', 'dockerfiles', 'Dockerfile_template'])
     versions = [
         '3.0.1',
         '3.1.1',
@@ -65,7 +65,7 @@ def build_docker_image(
 def format_dockerfile_location(
     python_version: str,
 ) -> str:
-    return os.path.join('.', 'tests', f'Dockerfile_python{python_version}')
+    return os.path.join('.', 'dockerfiles', f'Dockerfile_python{python_version}')
 
 if __name__ == '__main__':
     main()
