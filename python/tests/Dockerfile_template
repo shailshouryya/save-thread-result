@@ -1,3 +1,14 @@
+# NOTE!
+# The COPY command will only work properly if
+# the command using this Dockerfile to build the Docker image
+# is called from the
+# save-thread-result/python directory
+# and will NOT work if called from the
+# save-thread-result/python/tests directory
+# or the
+# save-thread-result directory
+
+
 FROM debian:bullseye-20231120-slim
 
 # https://stackoverflow.com/questions/19816275/no-acceptable-c-compiler-found-in-path-when-installing-python

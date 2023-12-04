@@ -17,7 +17,7 @@ from typing import (
 )
 
 def main():
-    dockerfile_template = read_file(['.', 'Dockerfile_template'])
+    dockerfile_template = read_file(['.', 'tests', 'Dockerfile_template'])
     versions = [
         '3.0.1',
         '3.1.1',
@@ -50,7 +50,7 @@ def write_dockerfile(
     dockerfile_template: str,
     python_version: str,
 ) -> None:
-    formatted_dockerfile_location = os.path.join('.', f'Dockerfile_python{python_version}')
+    formatted_dockerfile_location = os.path.join('.', 'tests', f'Dockerfile_python{python_version}')
     major_minor                   = '.'.join(python_version.split('.')[:-1:])
     with open(file=formatted_dockerfile_location, mode='w', buffering=-1, encoding='utf-8', newline=None) as file:
         file.write(dockerfile_template.format(FULL_VERSION=python_version, MAJOR_MINOR=major_minor))
@@ -58,7 +58,8 @@ def write_dockerfile(
 def build_docker_image(
     python_version: str,
 ) -> None:
-    os.system(f'docker build --tag save_thread_result-{python_version} --file Dockerfile_python{python_version} .')
+    formatted_dockerfile_location = os.path.join('.', 'tests', f'Dockerfile_python{python_version}')
+    os.system(f'docker build --tag save_thread_result-{python_version} --file {formatted_dockerfile_location} .')
 
 
 if __name__ == '__main__':
