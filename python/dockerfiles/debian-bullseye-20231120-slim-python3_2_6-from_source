@@ -1,0 +1,25 @@
+# NOTE!
+# The COPY command will only work properly if
+# the command using this Dockerfile to build the Docker image
+# is called from the
+# save-thread-result/python directory
+# and will NOT work if called from the
+# save-thread-result/python/tests directory
+# or the
+# save-thread-result directory
+
+
+FROM debian:bullseye-20231120-slim
+
+RUN apt-get -y update; apt-get install \
+  clang \
+  curl \
+  make \
+  -y # -y needs to be AFTER all packages to install
+
+RUN curl -SL https://www.python.org/ftp/python/3.2.6/Python-3.2.6.tgz | tar -xzvf - \
+    && cd Python-3.2.6 && ./configure && make && make altinstall
+
+COPY . ./save_thread_result/python
+
+CMD ["python3.2", "save_thread_result/python/dummy_example.py"]
