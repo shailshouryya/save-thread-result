@@ -12,7 +12,7 @@
 FROM debian:bullseye-20231120-slim
 
 RUN apt-get -y update; apt-get install \
-  clang \
+  clang \ # do NOT use gcc for 3.3.7  - see dockerfiles/README.md for explanation
   curl \
   make \
   -y # -y needs to be AFTER all packages to install
