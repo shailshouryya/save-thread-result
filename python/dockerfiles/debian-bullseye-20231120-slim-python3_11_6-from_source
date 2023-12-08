@@ -9,7 +9,7 @@
 # save-thread-result directory
 
 
-FROM debian:bullseye-20231120-slim
+FROM debian:bullseye-20231120-slim AS base
 
 RUN apt-get -y update; apt-get install \
   curl \
@@ -20,6 +20,10 @@ RUN apt-get -y update; apt-get install \
 
 RUN curl -SL https://www.python.org/ftp/python/3.11.6/Python-3.11.6.tgz | tar -xzvf - \
     && cd Python-3.11.6 && ./configure && make && make altinstall
+
+FROM debian:bullseye-20231120-slim AS final
+
+COPY --from=base /usr/local/ /usr/local/
 
 COPY . ./save_thread_result/python
 
