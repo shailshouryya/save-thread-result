@@ -12,60 +12,35 @@ for the Docker image to build correctly.
 
 import os
 
-from typing import (
-    Sequence,
-)
-
-def main():
-    dockerfile_template = read_file(['.', 'dockerfiles', 'Dockerfile_template'])
-    versions = [
-        '3.0.1',
-        '3.1.1',
-        '3.2.6',
-        '3.3.7',
-        '3.4.10',
-        '3.5.10',
-        '3.6.15',
-        '3.7.17',
-        '3.8.18',
-        '3.9.18',
-        '3.10.13',
-        '3.11.6',
-        '3.12.0',
-    ]
-    for version in versions:
-        write_dockerfile(dockerfile_template, version)
-    for version in versions:
-        build_docker_image(version)
-
-
-def read_file(
-    file_location: Sequence[str]
-) -> str:
-    formatted_dockerfile_template_location = os.path.join(*file_location)
-    with open(file=formatted_dockerfile_template_location, mode='r', buffering=-1, encoding='utf-8', newline=None) as file:
-        return file.read()
-
-def write_dockerfile(
-    dockerfile_template: str,
-    python_version: str,
+def main(
 ) -> None:
-    formatted_dockerfile_location = format_dockerfile_location(python_version)
-    major_minor                   = '.'.join(python_version.split('.')[:-1:])
-    with open(file=formatted_dockerfile_location, mode='w', buffering=-1, encoding='utf-8', newline=None) as file:
-        file.write(dockerfile_template.format(FULL_VERSION=python_version, MAJOR_MINOR=major_minor))
+    environments = [
+        'debian-bullseye-20231120-slim-python3_0_1-from_source',
+        'debian-bullseye-20231120-slim-python3_1_1-from_source',
+        'debian-bullseye-20231120-slim-python3_2_6-from_source',
+        'debian-bullseye-20231120-slim-python3_3_7-from_source',
+        'debian-bullseye-20231120-slim-python3_4_10-from_source',
+        'debian-bullseye-20231120-slim-python3_5_10-from_source',
+        'debian-bullseye-20231120-slim-python3_6_15-from_source',
+        'debian-bullseye-20231120-slim-python3_7_17-from_source',
+        'debian-bullseye-20231120-slim-python3_8_18-from_source',
+        'debian-bullseye-20231120-slim-python3_9_18-from_source',
+        'debian-bullseye-20231120-slim-python3_10_13-from_source',
+        'debian-bullseye-20231120-slim-python3_11_6-from_source',
+        'debian-bullseye-20231120-slim-python3_12_0-from_source',
+    ]
+    for environment in environments:
+        dockerfile_location = ['.', 'dockerfiles', environment]
+        build_docker_image(dockerfile_location)
+
 
 def build_docker_image(
-    python_version: str,
+    dockerfile_location: str,
 ) -> None:
-    formatted_dockerfile_location = format_dockerfile_location(python_version)
-    os.system(f'docker build --tag save_thread_result-{python_version} --file {formatted_dockerfile_location} .')
+    formatted_dockerfile_location = os.path.join(*dockerfile_location)
+    formatted_docker_image_tag = dockerfile_location[-1]
+    os.system(f'docker build --tag save_thread_result-{formatted_docker_image_tag} --file {formatted_dockerfile_location} .')
 
-
-def format_dockerfile_location(
-    python_version: str,
-) -> str:
-    return os.path.join('.', 'dockerfiles', f'Dockerfile_python{python_version}')
 
 if __name__ == '__main__':
     main()
