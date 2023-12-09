@@ -15,19 +15,19 @@ import os
 def main(
 ) -> None:
     environments = [
-        'debian-bullseye-20231120-slim-python3_0_1-from_source',
-        'debian-bullseye-20231120-slim-python3_1_1-from_source',
-        'debian-bullseye-20231120-slim-python3_2_6-from_source',
-        'debian-bullseye-20231120-slim-python3_3_7-from_source',
-        'debian-bullseye-20231120-slim-python3_4_10-from_source',
-        'debian-bullseye-20231120-slim-python3_5_10-from_source',
-        'debian-bullseye-20231120-slim-python3_6_15-from_source',
-        'debian-bullseye-20231120-slim-python3_7_17-from_source',
-        'debian-bullseye-20231120-slim-python3_8_18-from_source',
-        'debian-bullseye-20231120-slim-python3_9_18-from_source',
-        'debian-bullseye-20231120-slim-python3_10_13-from_source',
-        'debian-bullseye-20231120-slim-python3_11_6-from_source',
-        'debian-bullseye-20231120-slim-python3_12_0-from_source',
+        'debian-bullseye-20231120-slim-python3_0-from_source',
+        'debian-bullseye-20231120-slim-python3_1-from_source',
+        'debian-bullseye-20231120-slim-python3_2-from_source',
+        'debian-bullseye-20231120-slim-python3_3-from_source',
+        'debian-bullseye-20231120-slim-python3_4-from_source',
+        'debian-bullseye-20231120-slim-python3_5-from_source',
+        'debian-bullseye-20231120-slim-python3_6-from_source',
+        'debian-bullseye-20231120-slim-python3_7-from_source',
+        'debian-bullseye-20231120-slim-python3_8-from_source',
+        'debian-bullseye-20231120-slim-python3_9-from_source',
+        'debian-bullseye-20231120-slim-python3_10-from_source',
+        'debian-bullseye-20231120-slim-python3_11-from_source',
+        'debian-bullseye-20231120-slim-python3_12-from_source',
     ]
     for environment in environments:
         dockerfile_location = ['.', 'dockerfiles', environment]
