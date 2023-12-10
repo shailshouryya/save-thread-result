@@ -15,7 +15,7 @@ RUN apt-get -y update; apt-get install \
   curl \
   gcc \
   make \
-  -y # -y needs to be AFTER all packages to install
+  -y
 
 RUN curl -SL https://www.python.org/ftp/python/3.0.1/Python-3.0.1.tgz | tar -xzvf - \
     && cd Python-3.0.1 && ./configure && make && make altinstall

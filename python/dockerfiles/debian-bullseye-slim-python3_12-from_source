@@ -16,7 +16,7 @@ RUN apt-get -y update; apt-get install \
   gcc \
   make \
   zlib1g-dev \
-  -y # -y needs to be AFTER all packages to install
+  -y
 
 RUN curl -SL https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz | tar -xzvf - \
     && cd Python-3.12.0 && ./configure && make && make altinstall
