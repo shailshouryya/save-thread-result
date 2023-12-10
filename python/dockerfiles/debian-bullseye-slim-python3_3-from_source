@@ -16,7 +16,7 @@ RUN apt-get -y update; apt-get install \
   clang \
   curl \
   make \
-  -y # -y needs to be AFTER all packages to install
+  -y
 
 RUN curl -SL https://www.python.org/ftp/python/3.3.7/Python-3.3.7.tgz | tar -xzvf - \
     && cd Python-3.3.7 && ./configure && make && make altinstall
