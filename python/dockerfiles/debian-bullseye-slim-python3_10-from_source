@@ -16,10 +16,18 @@ RUN apt-get -y update; apt-get install \
   gcc \
   make \
   zlib1g-dev \
-  -y
-
-RUN curl -SL https://www.python.org/ftp/python/3.10.13/Python-3.10.13.tgz | tar -xzvf - \
-    && cd Python-3.10.13 && ./configure && make && make altinstall
+  -y \
+  && curl -SL https://www.python.org/ftp/python/3.10.13/Python-3.10.13.tgz | tar -xzvf - \
+    && cd Python-3.10.13 && ./configure && make && make install \
+    && cd / \
+  && rm -rf Python-3.10.13 \
+  && find /usr/local -depth \
+		\( \
+			\( -type d -a \( -name test -o -name tests -o -name idle_test \) \) \
+			-o \( -type f -a \( -name '*.pyc' -o -name '*.pyo' -o -name 'libpython*.a' \) \) \
+		\) -exec rm -rf '{}' + \
+	; \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 
 FROM debian:bullseye-20231120-slim AS final
 

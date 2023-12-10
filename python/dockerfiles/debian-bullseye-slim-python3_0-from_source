@@ -15,10 +15,19 @@ RUN apt-get -y update; apt-get install \
   curl \
   gcc \
   make \
-  -y
+  -y \
+  && curl -SL https://www.python.org/ftp/python/3.0.1/Python-3.0.1.tgz | tar -xzvf - \
+  && cd Python-3.0.1 && ./configure && make && make install && cd / \
+  && rm -rf Python-3.0.1 \
+  && find /usr/local -depth \
+		\( \
+			\( -type d -a \( -name test -o -name tests -o -name idle_test \) \) \
+			-o \( -type f -a \( -name '*.pyc' -o -name '*.pyo' -o -name 'libpython*.a' \) \) \
+		\) -exec rm -rf '{}' + \
+	; \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+  rm -rf /var/lib/apt/lists/*
 
-RUN curl -SL https://www.python.org/ftp/python/3.0.1/Python-3.0.1.tgz | tar -xzvf - \
-    && cd Python-3.0.1 && ./configure && make && make altinstall
 
 FROM debian:bullseye-20231120-slim AS final
 
