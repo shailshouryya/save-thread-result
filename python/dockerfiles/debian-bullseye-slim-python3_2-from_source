@@ -11,15 +11,27 @@
 
 FROM debian:bullseye-20231120-slim AS base
 
-RUN apt-get -y update; apt-get install \
+RUN apt-get -y update; apt-get install --no-install-recommends \
   # do NOT use gcc for 3.3.7  - see dockerfiles/README.md for explanation
   clang \
   curl \
   make \
-  -y
-
-RUN curl -SL https://www.python.org/ftp/python/3.2.6/Python-3.2.6.tgz | tar -xzvf - \
-    && cd Python-3.2.6 && ./configure && make && make altinstall
+  lcov pkg-config \
+      libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev \
+      libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev \
+      lzma lzma-dev tk-dev uuid-dev gdb zlib1g-dev -y \
+  && curl -SL https://www.python.org/ftp/python/3.2.6/Python-3.2.6.tgz | tar -xzvf - \
+  && cd Python-3.2.6 && ./configure && make -j $(nproc) && make install \
+  && cd / \
+  && rm -rf Python-3.2.6 \
+  && find /usr/local -depth \
+		\( \
+			\( -type d -a \( -name test -o -name tests -o -name idle_test \) \) \
+			-o \( -type f -a \( -name '*.pyc' -o -name '*.pyo' -o -name 'libpython*.a' \) \) \
+		\) -exec rm -rf '{}' + \
+	; \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+  rm -rf /var/lib/apt/lists/*
 
 FROM debian:bullseye-20231120-slim AS final
 
