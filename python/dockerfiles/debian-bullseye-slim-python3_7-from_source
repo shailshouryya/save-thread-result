@@ -15,11 +15,12 @@ RUN apt-get -y update; apt-get install \
   curl \
   gcc \
   make \
-  zlib1g-dev \
-  -y
-
-RUN curl -SL https://www.python.org/ftp/python/3.7.17/Python-3.7.17.tgz | tar -xzvf - \
-    && cd Python-3.7.17 && ./configure && make && make altinstall
+  gdb lcov pkg-config \
+  libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev \
+  libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev \
+  lzma lzma-dev tk-dev uuid-dev zlib1g-dev -y \
+  && curl -SL https://www.python.org/ftp/python/3.7.17/Python-3.7.17.tgz | tar -xzvf - \
+  && cd Python-3.7.17 && ./configure && make && make altinstall
 
 FROM debian:bullseye-20231120-slim AS final
 
