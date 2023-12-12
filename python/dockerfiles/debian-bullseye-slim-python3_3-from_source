@@ -11,7 +11,9 @@
 
 FROM debian:bullseye-20231120-slim AS base
 
-RUN apt-get -y update; apt-get install \
+RUN set -eux; \
+  savedAptMark="$(apt-mark showmanual)"; \
+  apt-get -y update; apt-get install \
   # do NOT use gcc for 3.3.7  - see dockerfiles/README.md for explanation
   clang \
   curl \
@@ -29,6 +31,16 @@ RUN apt-get -y update; apt-get install \
 			\( -type d -a \( -name test -o -name tests -o -name idle_test \) \) \
 			-o \( -type f -a \( -name '*.pyc' -o -name '*.pyo' -o -name 'libpython*.a' \) \) \
 		\) -exec rm -rf '{}' + \
+	; \
+  apt-mark auto '.*' > /dev/null; \
+	# apt-mark manual $savedAptMark; \
+  find /usr/local -type f -executable -not \( -name '*tkinter*' \) -exec ldd '{}' ';' \
+		| awk '/=>/ { so = $(NF-1); if (index(so, "/usr/local/") == 1) { next }; gsub("^/(usr/)?", "", so); printf "*%s\n", so }' \
+		| sort -u \
+		| xargs -r dpkg-query --search \
+		| cut -d: -f1 \
+		| sort -u \
+		| xargs -r apt-mark manual \
 	; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
   rm -rf /var/lib/apt/lists/*
