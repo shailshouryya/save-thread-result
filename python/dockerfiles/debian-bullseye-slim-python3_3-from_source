@@ -16,9 +16,12 @@ RUN apt-get -y update; apt-get install \
   clang \
   curl \
   make \
-  -y \
+  lcov pkg-config \
+  libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev \
+  libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev \
+  lzma lzma-dev tk-dev uuid-dev gdb zlib1g-dev -y \
   && curl -SL https://www.python.org/ftp/python/3.3.7/Python-3.3.7.tgz | tar -xzvf - \
-  && cd Python-3.3.7 && ./configure && make && make altinstall
+  && cd Python-3.3.7 && ./configure CC=/usr/bin/clang && make && make altinstall
 
 FROM debian:bullseye-20231120-slim AS final
 
