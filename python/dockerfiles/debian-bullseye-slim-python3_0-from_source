@@ -45,10 +45,6 @@ RUN set -eux; \
   rm -rf /var/lib/apt/lists/*
 
 
-FROM debian:bullseye-20231120-slim AS final
-
-COPY --from=base /usr/local/ /usr/local/
-
 COPY . ./save_thread_result/python
 
 CMD ["python3.0", "save_thread_result/python/dummy_example.py"]

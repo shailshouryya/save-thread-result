@@ -44,10 +44,6 @@ RUN set -eux; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
   rm -rf /var/lib/apt/lists/*
 
-FROM debian:bullseye-20231120-slim AS final
-
-COPY --from=base /usr/local/ /usr/local/
-
 COPY . ./save_thread_result/python
 
 CMD ["python3.1", "save_thread_result/python/dummy_example.py"]
