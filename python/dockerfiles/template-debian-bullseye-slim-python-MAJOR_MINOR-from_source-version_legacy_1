@@ -12,15 +12,16 @@
 FROM debian:bullseye-20231120-slim AS base
 
 RUN apt-get -y update; apt-get install \
+  # do NOT use gcc for 3.2.6 or 3.3.7  - see dockerfiles/README.md for explanation
+  clang \
   curl \
-  gcc \
   make \
-  gdb lcov pkg-config \
+  lcov pkg-config \
   libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev \
   libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev \
-  lzma lzma-dev tk-dev uuid-dev zlib1g-dev -y \
-  && curl -SL https://www.python.org/ftp/python/3.1.1/Python-3.1.1.tgz | tar -xzvf - \
-  && cd Python-3.1.1 && ./configure && make && make altinstall
+  lzma lzma-dev tk-dev uuid-dev gdb zlib1g-dev -y \
+  && curl -SL https://www.python.org/ftp/python/{MAJOR_MINOR_PATCH}/Python-{MAJOR_MINOR_PATCH}.tgz | tar -xzvf - \
+  && cd Python-{MAJOR_MINOR_PATCH} && ./configure CC=/usr/bin/clang && make && make altinstall
 
 FROM debian:bullseye-20231120-slim AS final
 
@@ -28,4 +29,4 @@ COPY --from=base /usr/local/ /usr/local/
 
 COPY . ./save_thread_result/python
 
-CMD ["python3.1", "save_thread_result/python/dummy_example.py"]
+CMD ["python{MAJOR_MINOR}", "save_thread_result/python/dummy_example.py"]

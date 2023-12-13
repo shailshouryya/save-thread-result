@@ -19,8 +19,8 @@ RUN apt-get -y update; apt-get install \
   libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev \
   libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev \
   lzma lzma-dev tk-dev uuid-dev zlib1g-dev -y \
-  && curl -SL https://www.python.org/ftp/python/3.9.18/Python-3.9.18.tgz | tar -xzvf - \
-  && cd Python-3.9.18 && ./configure && make && make altinstall
+  && curl -SL https://www.python.org/ftp/python/{MAJOR_MINOR_PATCH}/Python-{MAJOR_MINOR_PATCH}.tgz | tar -xzvf - \
+  && cd Python-{MAJOR_MINOR_PATCH} && ./configure && make && make altinstall
 
 FROM debian:bullseye-20231120-slim AS final
 
@@ -28,4 +28,4 @@ COPY --from=base /usr/local/ /usr/local/
 
 COPY . ./save_thread_result/python
 
-CMD ["python3.9", "save_thread_result/python/dummy_example.py"]
+CMD ["python{MAJOR_MINOR}", "save_thread_result/python/dummy_example.py"]
