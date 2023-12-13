@@ -22,7 +22,16 @@ RUN set -eux; \
       libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev \
       lzma lzma-dev tk-dev uuid-dev zlib1g-dev -y \
   && curl -SL https://www.python.org/ftp/python/3.0.1/Python-3.0.1.tgz | tar -xzvf - \
-  && cd Python-3.0.1 && ./configure && make -j $(nproc) && make install \
+  && cd Python-3.0.1 && ./configure \
+  EXTRA_CFLAGS="$(dpkg-buildflags --get CFLAGS)"; \
+	LDFLAGS="$(dpkg-buildflags --get LDFLAGS)"; \
+	LDFLAGS="${LDFLAGS:--Wl},--strip-all"; \
+	make -j $(nproc) \
+		"EXTRA_CFLAGS=${EXTRA_CFLAGS:-}" \
+		"LDFLAGS=${LDFLAGS:-}" \
+		"PROFILE_TASK=${PROFILE_TASK:-}" \
+	 \
+  && make install \
   && cd / \
   && rm -rf Python-3.0.1 \
   && find /usr/local -depth \
