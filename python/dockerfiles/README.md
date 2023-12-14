@@ -6,6 +6,26 @@ This directory contains `Dockerfile`s for using the `save_thread_result` package
 
 NOTE! The `COPY` command (in the Dockerfile in this directory) will only work properly if the command using the Dockerfile to build the Docker image is called from the `save-thread-result/python` directory and will NOT work if called from the `save-thread-result/python/tests` directory or the `save-thread-result` directory
 
+### Command to build `Docker` image
+
+Here are sample commands to build a Docker image for testing `save_thread_result` in different environments (make sure to run these from the `save_thread_result/python` directory, and DO NOT run these from the `save_thread_result/python/dockerfiles` directory):
+
+```
+docker build --tag save_thread_result-3_0-debian-bullseye-slim-python3_0-from_source --file ./dockerfiles/from_template-3_0-debian-bullseye-slim-python3_0-from_source .
+docker build --tag save_thread_result-3_1-debian-bullseye-slim-python3_1-from_source --file ./dockerfiles/from_template-3_1-debian-bullseye-slim-python3_1-from_source .
+docker build --tag save_thread_result-3_2-debian-bullseye-slim-python3_2-from_source --file ./dockerfiles/from_template-3_2-debian-bullseye-slim-python3_2-from_source .
+docker build --tag save_thread_result-3_3-debian-bullseye-slim-python3_3-from_source --file ./dockerfiles/from_template-3_3-debian-bullseye-slim-python3_3-from_source .
+docker build --tag save_thread_result-3_4-debian-bullseye-slim-python3_4-from_source --file ./dockerfiles/from_template-3_4-debian-bullseye-slim-python3_4-from_source .
+docker build --tag save_thread_result-3_5-debian-bullseye-slim-python3_5-from_source --file ./dockerfiles/from_template-3_5-debian-bullseye-slim-python3_5-from_source .
+docker build --tag save_thread_result-3_6-debian-bullseye-slim-python3_6-from_source --file ./dockerfiles/from_template-3_6-debian-bullseye-slim-python3_6-from_source .
+docker build --tag save_thread_result-3_7-debian-bullseye-slim-python3_7-from_source --file ./dockerfiles/from_template-3_7-debian-bullseye-slim-python3_7-from_source .
+docker build --tag save_thread_result-3_8-debian-bullseye-slim-python3_8-from_source --file ./dockerfiles/from_template-3_8-debian-bullseye-slim-python3_8-from_source .
+docker build --tag save_thread_result-3_9-debian-bullseye-slim-python3_9-from_source --file ./dockerfiles/from_template-3_9-debian-bullseye-slim-python3_9-from_source .
+docker build --tag save_thread_result-3_10-debian-bullseye-slim-python3_10-from_source --file ./dockerfiles/from_template-3_10-debian-bullseye-slim-python3_10-from_source .
+docker build --tag save_thread_result-3_11-debian-bullseye-slim-python3_11-from_source --file ./dockerfiles/from_template-3_11-debian-bullseye-slim-python3_11-from_source .
+docker build --tag save_thread_result-3_12-debian-bullseye-slim-python3_12-from_source --file ./dockerfiles/from_template-3_12-debian-bullseye-slim-python3_12-from_source .
+```
+
 ### Using `clang` instead of `gcc` for `python3.2` and `python3.3`
 
 Attempting to build `Python-3.2.6` (and other patch releases for `Python-3.2`) and `Python3.3.7` (and other patch releases for `Python-3.3`) from source fails on the `debian:bullseye-20231120-slim` base image due to a `Segmentation fault` (see the [stack trace for Docker image build failure](#stack-trace-for-docker-image-build-failure) section below). This seemed odd, but attempting to rebuild the Dockerfile with no changes consistently resulted in the same error.
