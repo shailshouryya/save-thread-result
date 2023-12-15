@@ -76,7 +76,31 @@ Gilles Bardoux mentioned a fix that is the direct opposite (changing `long doubl
  extern PyGC_Head *_PyGC_generation0;
 ```
 
-In either case, it appears that the `gcc` compiler is more picky/less flexible or has a different implementation of `long double` and `double` compared to the `clang` compiler.
+<strike>In either case, it appears that the `gcc` compiler is more picky/less flexible or has a different implementation of `long double` and `double` compared to the `clang` compiler.</strike>
+
+The `Include/objimpl.h` definition in both the `Python-3.2.6` and `Python3.3.7` contains
+
+```
+/* GC information is stored BEFORE the object structure. */
+#ifndef Py_LIMITED_API
+typedef union _gc_head {
+    struct {
+        union _gc_head *gc_next;
+        union _gc_head *gc_prev;
+        Py_ssize_t gc_refs;
+    } gc;
+    long double dummy;  /* force worst-case alignment */
+} PyGC_Head;
+```
+
+and manually changing the `long double dummy` to `double dummy` allows `gcc` to compile without the
+
+```
+Segmentation fault
+make: *** [Makefile:467: sharedmods] Error 139
+```
+
+Therefore, it appears the fix Gilles Bardoux suggested is the actual fix.
 
 Directly related links:
 - https://bugs.python.org/issue37930
