@@ -23,10 +23,6 @@ RUN apt-get -y update; apt-get install \
   && curl -SL https://www.python.org/ftp/python/{MAJOR_MINOR_PATCH}/Python-{MAJOR_MINOR_PATCH}.tgz | tar -xzvf - \
   && cd Python-{MAJOR_MINOR_PATCH} && ./configure CC=/usr/bin/clang && make && make altinstall
 
-FROM debian:bullseye-20231120-slim AS final
-
-COPY --from=base /usr/local/ /usr/local/
-
 COPY . ./save_thread_result/python
 
 CMD ["python{MAJOR_MINOR}", "save_thread_result/python/dummy_example.py"]
