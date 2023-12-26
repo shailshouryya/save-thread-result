@@ -6,6 +6,25 @@ This directory contains `Dockerfile`s for using the `save_thread_result` package
 
 NOTE! The `COPY` command (in the Dockerfile in this directory) will only work properly if the command using the Dockerfile to build the Docker image is called from the `save-thread-result/python` directory and will NOT work if called from the `save-thread-result/python/tests` directory or the `save-thread-result` directory
 
+### Command to build the `Docker` image
+
+```
+docker build --tag save_thread_result-debian-bullseye-slim-python3_0-from_source --file ./dockerfiles/debian-bullseye-slim-python3_0-from_source .
+docker build --tag save_thread_result-debian-bullseye-slim-python3_1-from_source --file ./dockerfiles/debian-bullseye-slim-python3_1-from_source .
+docker build --tag save_thread_result-debian-bullseye-slim-python3_2-from_source --file ./dockerfiles/debian-bullseye-slim-python3_2-from_source .
+docker build --tag save_thread_result-debian-bullseye-slim-python3_3-from_source --file ./dockerfiles/debian-bullseye-slim-python3_3-from_source .
+docker build --tag save_thread_result-debian-bullseye-slim-python3_4-from_source --file ./dockerfiles/debian-bullseye-slim-python3_4-from_source .
+docker build --tag save_thread_result-debian-bullseye-slim-python3_5-from_source --file ./dockerfiles/debian-bullseye-slim-python3_5-from_source .
+docker build --tag save_thread_result-debian-bullseye-slim-python3_6-from_source --file ./dockerfiles/debian-bullseye-slim-python3_6-from_source .
+docker build --tag save_thread_result-debian-bullseye-slim-python3_7-from_source --file ./dockerfiles/debian-bullseye-slim-python3_7-from_source .
+docker build --tag save_thread_result-debian-bullseye-slim-python3_8-from_source --file ./dockerfiles/debian-bullseye-slim-python3_8-from_source .
+docker build --tag save_thread_result-debian-bullseye-slim-python3_9-from_source --file ./dockerfiles/debian-bullseye-slim-python3_9-from_source .
+docker build --tag save_thread_result-debian-bullseye-slim-python3_10-from_source --file ./dockerfiles/debian-bullseye-slim-python3_10-from_source .
+docker build --tag save_thread_result-debian-bullseye-slim-python3_11-from_source --file ./dockerfiles/debian-bullseye-slim-python3_11-from_source .
+docker build --tag save_thread_result-debian-bullseye-slim-python3_12-from_source --file ./dockerfiles/debian-bullseye-slim-python3_12-from_source .
+```
+
+
 ### Using `clang` instead of `gcc` for `python3.2` and `python3.3`
 
 Attempting to build `Python-3.2.6` (and other patch releases for `Python-3.2`) and `Python3.3.7` (and other patch releases for `Python-3.3`) from source fails on the `debian:bullseye-20231120-slim` base image due to a `Segmentation fault` (see the [stack trace for Docker image build failure](#stack-trace-for-docker-image-build-failure) section below). This seemed odd, but attempting to rebuild the Dockerfile with no changes consistently resulted in the same error.
@@ -57,7 +76,31 @@ Gilles Bardoux mentioned a fix that is the direct opposite (changing `long doubl
  extern PyGC_Head *_PyGC_generation0;
 ```
 
-In either case, it appears that the `gcc` compiler is more picky/less flexible or has a different implementation of `long double` and `double` compared to the `clang` compiler.
+<strike>In either case, it appears that the `gcc` compiler is more picky/less flexible or has a different implementation of `long double` and `double` compared to the `clang` compiler.</strike>
+
+The `Include/objimpl.h` definition in both the `Python-3.2.6` and `Python3.3.7` contains
+
+```
+/* GC information is stored BEFORE the object structure. */
+#ifndef Py_LIMITED_API
+typedef union _gc_head {
+    struct {
+        union _gc_head *gc_next;
+        union _gc_head *gc_prev;
+        Py_ssize_t gc_refs;
+    } gc;
+    long double dummy;  /* force worst-case alignment */
+} PyGC_Head;
+```
+
+and manually changing the `long double dummy` to `double dummy` allows `gcc` to compile without the
+
+```
+Segmentation fault
+make: *** [Makefile:467: sharedmods] Error 139
+```
+
+Therefore, it appears the fix Gilles Bardoux suggested is the actual fix.
 
 Directly related links:
 - https://bugs.python.org/issue37930
