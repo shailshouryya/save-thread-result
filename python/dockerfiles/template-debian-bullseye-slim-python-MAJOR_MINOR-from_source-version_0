@@ -40,14 +40,28 @@ RUN \
   -y \
   && curl -SL https://www.python.org/ftp/python/{MAJOR_MINOR_PATCH}/Python-{MAJOR_MINOR_PATCH}.tgz | tar -xzvf - \
   && cd Python-{MAJOR_MINOR_PATCH} \
-  && ./configure \
   EXTRA_CFLAGS="$(dpkg-buildflags --get CFLAGS)"; \
-       LDFLAGS="$(dpkg-buildflags --get LDFLAGS)"; \
-       LDFLAGS="${{LDFLAGS:--Wl}},--strip-all"; \
+      LDFLAGS="$(dpkg-buildflags --get LDFLAGS)"; \
+      LDFLAGS="${{LDFLAGS:--Wl}},--strip-all"; \
+  nproc="$(nproc)" ; \
+  gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"; \
+  ./configure \
+    --build="$gnuArch" \
+		# --enable-optimizations \
+		--enable-shared \
+    --without-ensurepip ; \
   make -j $(nproc) \
     "EXTRA_CFLAGS=${{EXTRA_CFLAGS:-}}" \
     "LDFLAGS=${{LDFLAGS:-}}" \
+    "PROFILE_TASK=${{PROFILE_TASK:-}}" ; \
+  # https://github.com/docker-library/python/issues/784
+  # prevent accidental usage of a system installed libpython of the same version
+  rm python; \
+  make -j "$nproc" \
+    "EXTRA_CFLAGS=${{EXTRA_CFLAGS:-}}" \
+    "LDFLAGS=${{LDFLAGS:--Wl}},-rpath='\$\$ORIGIN/../lib'" \
     "PROFILE_TASK=${{PROFILE_TASK:-}}" \
+    python \
   && make install \
   && cd / \
   && rm -rf Python-{MAJOR_MINOR_PATCH} \
@@ -57,6 +71,7 @@ RUN \
                        -o \( -type f -a \( -name '*.pyc' -o -name '*.pyo' -o -name 'libpython*.a' \) \) \
                \) -exec rm -rf '{{}}' + \
        ; \
+  # ldconfig; \
   apt-mark auto '.*' > /dev/null; \
   # apt-mark manual $savedAptMark; \
   find /usr/local -type f -executable -not \( -name '*tkinter*' \) -exec ldd '{{}}' ';' \
