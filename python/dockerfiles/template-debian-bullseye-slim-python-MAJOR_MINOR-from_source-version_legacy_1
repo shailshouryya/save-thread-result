@@ -38,8 +38,9 @@ RUN \
   -y \
   && curl -SL https://www.python.org/ftp/python/{MAJOR_MINOR_PATCH}/Python-{MAJOR_MINOR_PATCH}.tgz | tar -xzvf - \
   && cd Python-{MAJOR_MINOR_PATCH} \
+  && nproc="$(nproc)" \
   && ./configure CC=/usr/bin/clang \
-  && make \
+  && make -j "$nproc" \
   && make altinstall
 
 COPY . ./save_thread_result/python
